@@ -16,7 +16,7 @@ namespace Project3Data
         {
             InitializeComponent();
             int i = 5;
-            string b = "homo";
+            string b = "homo1";
 
         }
     }
