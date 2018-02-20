@@ -15,6 +15,7 @@ namespace Project3Data
         public Form1()
         {
             InitializeComponent();
+            int i = 5;
         }
     }
 }
