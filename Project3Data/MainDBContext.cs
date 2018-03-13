@@ -11,6 +11,7 @@ namespace Project3Data
     {
         public MainDBContext() : base("Project3Database")
         {
+
         }
 
         public DbSet<BicycleTheftModel> BicycleThefts { get; set; }
