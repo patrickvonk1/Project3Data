@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -72,6 +74,51 @@ namespace Project3Data
             return bicycleTheftList;
         }
 
+        private List<ParkingGarageModel> GetParkingModelsFromTxtFiles()
+        {
+
+            var stringFilePaths = Directory.GetFiles("ParkingGarages");
+
+            List<ParkingGarageModel> parkingModels = new List<ParkingGarageModel>();
+
+            foreach (var filePath in stringFilePaths)
+            {
+                int BracketCount = 0;
+                string ExampleJSON = new StreamReader(filePath).ReadToEnd();
+                StringBuilder stringBuilder = new StringBuilder();
+
+                foreach (char c in ExampleJSON)
+                {
+                    if (c == '{')
+                        ++BracketCount;
+                    else if (c == '}')
+                        --BracketCount;
+                    stringBuilder.Append(c);
+
+                    if (BracketCount == 0 && c != ' ')
+                    {
+                        JObject jsonObj = JObject.Parse(stringBuilder.ToString());
+                        Dictionary<string, string> jsonPropertyDic = jsonObj.ToObject<Dictionary<string, string>>();
+
+                        DateTime dateTime = ConvertJSonDateTimeStringToDateTime(jsonPropertyDic["DateTime"]);
+                        bool isOpen = bool.Parse(jsonPropertyDic["open"]);
+                        string name = jsonPropertyDic["name"];
+                        int parkingCapacity = int.Parse(jsonPropertyDic["parkingCapacity"]);
+                        int vacantSpaces = int.Parse(jsonPropertyDic["vacantSpaces"]);
+
+                        ParkingGarageModel newParkingModel = new ParkingGarageModel() { Date = dateTime, IsOpen = isOpen, Name = name, ParkingCapacity = parkingCapacity, VacantSpaces = vacantSpaces };
+
+                        //ParkingGarageModel parsedJsonObject = JsonConvert.DeserializeObject<ParkingGarageModel>(stringBuilder.ToString());
+                        parkingModels.Add(newParkingModel);
+
+                        stringBuilder = new StringBuilder();
+                    }
+                }
+            }
+
+            return parkingModels;
+        }
+
         private List<WeatherModel> GetWeatherFromTextFile()
         {
             List<string> allLinesText = File.ReadAllLines(@"Weer2011-2013.txt").ToList();
@@ -115,6 +162,22 @@ namespace Project3Data
             return filteredList;
         }
 
+        private DateTime ConvertJSonDateTimeStringToDateTime(string dateTime)//06-03-2018.16:00:01
+        {
+            string dayAsString = dateTime[0] + "" + dateTime[1];
+            string monthAsString = dateTime[3] + "" + dateTime[4];
+            string yearAsString = dateTime[6] + "" + dateTime[7] + "" + dateTime[8] + "" + dateTime[9];
+
+            DateTime convertedDateTime = DateTime.Parse(dayAsString + "/" + monthAsString + "/" + yearAsString);
+
+            string hours = dateTime[11] + "" + dateTime[12];
+            string minuts = dateTime[14] + "" + dateTime[15];
+            string seconds = dateTime[17] + "" + dateTime[18];
+            TimeSpan d = new TimeSpan(int.Parse(hours), int.Parse(minuts), int.Parse(seconds));
+            convertedDateTime = convertedDateTime.Add(d);
+            return convertedDateTime;
+        }
+
         private DateTime ConvertStringToDateTime(string dateString)
         {
             string yearAsString = dateString[0] + "" + dateString[1] + "" + dateString[2] + "" + dateString[3];
@@ -135,5 +198,15 @@ namespace Project3Data
             return "";
         }
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<ParkingGarageModel> mark = GetParkingModelsFromTxtFiles();
+            using (MainDBContext dbContext = new MainDBContext())
+            {
+                dbContext.ParkingGarageModel.AddRange(mark);
+                dbContext.SaveChanges();
+            }
+        }
     }
 }
