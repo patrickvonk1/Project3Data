@@ -25,7 +25,5 @@ namespace Project3Data
 
         //Total of left over places
         public int VacantSpaces { get; set; }
-
-
     }
 }
