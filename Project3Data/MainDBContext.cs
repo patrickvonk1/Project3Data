@@ -51,7 +51,7 @@ namespace Project3Data
                 {
                     if (weatherModel.DayAverageTemperature >= minTemperature && weatherModel.DayAverageTemperature <= maxTemperature)  // date of weather when degrees is => input degrees 1 && <= input degrees 2 )
                     {
-                        filteredBicyclethefts.Add(weatherModel);
+                        //filteredBicyclethefts.Add(weatherModel);
                     }
                 }
             }
