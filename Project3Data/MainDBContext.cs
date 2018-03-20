@@ -18,32 +18,11 @@ namespace Project3Data
         public DbSet<WeatherModel> WeatherModels { get; set; }
         public DbSet<ParkingGarageModel> ParkingGarageModel { get; set; }
 
-        public static List<BicycleTheftModel> GetBicycleTheftsByYear(int year)
-        {
-
-            List<BicycleTheftModel> filteredBicyclethefts = new List<BicycleTheftModel>();
-
-
-            using (MainDBContext context = new MainDBContext())
-            {
-                foreach (var bicycleTheft in context.BicycleThefts)
-                {
-                    if (bicycleTheft.Date.Year == year)
-                    {
-                        filteredBicyclethefts.Add(bicycleTheft);
-                    }
-                }
-            
-            }
-
-            return filteredBicyclethefts;
-        }
-
         public static List<BicycleTheftModel> GetBicycleTheftsByWeather(int minTemperature, int maxTemperature)
         {
 
-            List<BicycleTheftModel> filteredBicyclethefts = new List<BicycleTheftModel>();
-
+            List<BicycleTheftModel> filteredBicycleThefts = new List<BicycleTheftModel>();
+            List<WeatherModel> filteredWeatherModels = new List<WeatherModel>();
 
             using (MainDBContext context = new MainDBContext())
             {
@@ -51,12 +30,24 @@ namespace Project3Data
                 {
                     if (weatherModel.DayAverageTemperature >= minTemperature && weatherModel.DayAverageTemperature <= maxTemperature)  // date of weather when degrees is => input degrees 1 && <= input degrees 2 )
                     {
-                        //filteredBicyclethefts.Add(weatherModel);
+                        filteredWeatherModels.Add(weatherModel);
+                    }
+                }
+
+                foreach (var theft in context.BicycleThefts)
+                {
+                    foreach (var weather in filteredWeatherModels)
+                    {
+                        if (theft.Date == weather.Date)
+                        {
+                            filteredBicycleThefts.Add(theft);
+                            break;
+                        }
                     }
                 }
             }
 
-            return filteredBicyclethefts;
+            return filteredBicycleThefts;
         }
     }
 }
