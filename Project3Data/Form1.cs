@@ -16,6 +16,9 @@ namespace Project3Data
         public Form1()
         {
             InitializeComponent();
+            List <BicycleTheftModel> yourDadIsLesbian = MainDBContext.GetBicycleTheftsByYear(2013);
+
+           
         }
 
         #region Other Methods
@@ -135,5 +138,15 @@ namespace Project3Data
             return "";
         }
         #endregion
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            using (MainDBContext context = new MainDBContext())
+            {
+                context.WeatherModels.AddRange(GetWeatherFromTextFile());
+               // context.BicycleThefts.AddRange(GetBicycleTheftsFromCSV());
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }
