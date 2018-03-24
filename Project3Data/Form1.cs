@@ -199,13 +199,19 @@ namespace Project3Data
         }
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            List<ParkingGarageModel> mark = GetParkingModelsFromTxtFiles();
+            List<BicycleTheftModel> bicycleTheftModels = GetBicycleTheftsFromCSV();
+            List<ParkingGarageModel> parkingModels = GetParkingModelsFromTxtFiles();
+            List<WeatherModel> weatherModels = GetWeatherFromTextFile();
+
             using (MainDBContext dbContext = new MainDBContext())
             {
-                dbContext.ParkingGarageModel.AddRange(mark);
-                dbContext.SaveChanges();
+                //dbContext.BicycleThefts.AddRange(bicycleTheftModels);
+                //dbContext.ParkingGarageModel.AddRange(parkingModels);
+                //dbContext.WeatherModels.AddRange(weatherModels);
+
+                await dbContext.SaveChangesAsync();
             }
         }
 
