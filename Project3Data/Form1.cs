@@ -18,6 +18,7 @@ namespace Project3Data
         public Form1()
         {
             InitializeComponent();
+            var mark = MainDBContext.GetBicycleTheftsByWindSpeed(-1000, 1000);
         }
 
         #region Other Methods
