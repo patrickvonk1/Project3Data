@@ -209,7 +209,7 @@ namespace Project3Data
             {
                 //dbContext.BicycleThefts.AddRange(bicycleTheftModels);
                 //dbContext.ParkingGarageModel.AddRange(parkingModels);
-                //dbContext.WeatherModels.AddRange(weatherModels);
+                dbContext.WeatherModels.AddRange(weatherModels);
 
                 await dbContext.SaveChangesAsync();
             }

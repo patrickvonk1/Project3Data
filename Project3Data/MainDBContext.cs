@@ -113,6 +113,24 @@ namespace Project3Data
 
             return filteredBicycleThefts;
         }
+
+        public static List<string> GetAllParkingGarageName()
+        {
+            List<string> allParkingGarageNames = new List<string>();
+
+            using (MainDBContext context = new MainDBContext())
+            {
+                foreach (var parkingGaragaModel in context.ParkingGarageModel)
+                {
+                    if (!allParkingGarageNames.Contains(parkingGaragaModel.Name))
+                    {
+                        allParkingGarageNames.Add(parkingGaragaModel.Name);
+                    }
+                }
+            }
+            return allParkingGarageNames;
+
+        }
     }
-    
 }
+    
