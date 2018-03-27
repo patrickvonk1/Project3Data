@@ -184,8 +184,16 @@ namespace Project3Data
 
             string month = dateString[4] + "" + dateString[5];
             string day = dateString[6] + "" + dateString[7];
-
-            return DateTime.Parse(day + "/" + month + "/" + yearAsString);
+            System.Threading.Thread threadForCulture = new System.Threading.Thread(delegate () { });
+            string format = threadForCulture.CurrentCulture.DateTimeFormat.ShortDatePattern;
+            if(format == "M/d/yyyy")
+            {
+                return DateTime.Parse(month + "/" + day + "/" + yearAsString);
+            }
+            else
+            {
+                return DateTime.Parse(day + "/" + month + "/" + yearAsString);
+            }
         }
 
         string GetValue(List<string> list, int index)
@@ -208,8 +216,8 @@ namespace Project3Data
             using (MainDBContext dbContext = new MainDBContext())
             {
                 //dbContext.BicycleThefts.AddRange(bicycleTheftModels);
-                //dbContext.ParkingGarageModel.AddRange(parkingModels);
-                dbContext.WeatherModels.AddRange(weatherModels);
+                dbContext.ParkingGarageModel.AddRange(parkingModels);
+                //dbContext.WeatherModels.AddRange(weatherModels);
 
                 await dbContext.SaveChangesAsync();
             }
