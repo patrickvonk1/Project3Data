@@ -45,9 +45,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(5, 563);
+            this.button1.Location = new System.Drawing.Point(4, 457);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(258, 37);
+            this.button1.Size = new System.Drawing.Size(194, 30);
             this.button1.TabIndex = 0;
             this.button1.Text = "Add Parkingmodels to database";
             this.button1.UseVisualStyleBackColor = true;
@@ -63,7 +64,7 @@
             this.firefoxSubTabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.firefoxSubTabControl1.Name = "firefoxSubTabControl1";
             this.firefoxSubTabControl1.SelectedIndex = 0;
-            this.firefoxSubTabControl1.Size = new System.Drawing.Size(1262, 664);
+            this.firefoxSubTabControl1.Size = new System.Drawing.Size(946, 540);
             this.firefoxSubTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.firefoxSubTabControl1.TabIndex = 1;
             // 
@@ -78,7 +79,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(1254, 616);
+            this.tabPage1.Size = new System.Drawing.Size(938, 492);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Parkeer & Weer";
             // 
@@ -93,21 +94,22 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(1254, 616);
+            this.tabPage2.Size = new System.Drawing.Size(938, 492);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1262, 664);
+            this.ClientSize = new System.Drawing.Size(946, 540);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.firefoxSubTabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Project 3, Team 1";
