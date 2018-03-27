@@ -18,7 +18,7 @@ namespace Project3Data
         public DbSet<WeatherModel> WeatherModels { get; set; }
         public DbSet<ParkingGarageModel> ParkingGarageModel { get; set; }
 
-        public static List<BicycleTheftModel> GetBicycleTheftsByWeather(int minTemperature, int maxTemperature)
+        public static List<BicycleTheftModel> GetBicycleTheftsByTemperature(int minTemperature, int maxTemperature)
         {
 
             List<BicycleTheftModel> filteredBicycleThefts = new List<BicycleTheftModel>();
@@ -28,7 +28,71 @@ namespace Project3Data
             {
                 foreach (var weatherModel in context.WeatherModels)
                 {
-                    if (weatherModel.DayAverageTemperature >= minTemperature && weatherModel.DayAverageTemperature <= maxTemperature)  // date of weather when degrees is => input degrees 1 && <= input degrees 2 )
+                    if (weatherModel.DayAverageTemperature >= minTemperature && weatherModel.DayAverageTemperature <= maxTemperature)
+                    {
+                        filteredWeatherModels.Add(weatherModel);
+                    }
+                }
+
+                foreach (var theft in context.BicycleThefts)
+                {
+                    foreach (var weather in filteredWeatherModels)
+                    {
+                        if (theft.Date == weather.Date)
+                        {
+                            filteredBicycleThefts.Add(theft);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return filteredBicycleThefts;
+        }
+
+        public static List<BicycleTheftModel> GetBicycleTheftsByWindSpeed(int minWindspeed, int maxWindspeed)
+        {
+
+            List<BicycleTheftModel> filteredBicycleThefts = new List<BicycleTheftModel>();
+            List<WeatherModel> filteredWeatherModels = new List<WeatherModel>();
+
+            using (MainDBContext context = new MainDBContext())
+            {
+                foreach (var weatherModel in context.WeatherModels)
+                {
+                    if (weatherModel.HourWindspeed >= minWindspeed && weatherModel.HourWindspeed <= maxWindspeed)
+                    {
+                        filteredWeatherModels.Add(weatherModel);
+                    }
+                }
+
+                foreach (var theft in context.BicycleThefts)
+                {
+                    foreach (var weather in filteredWeatherModels)
+                    {
+                        if (theft.Date == weather.Date)
+                        {
+                            filteredBicycleThefts.Add(theft);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return filteredBicycleThefts;
+        }
+
+        public static List<BicycleTheftModel> GetBicycleTheftsByRainfall(int minRainfall, int maxRainfall)
+        {
+
+            List<BicycleTheftModel> filteredBicycleThefts = new List<BicycleTheftModel>();
+            List<WeatherModel> filteredWeatherModels = new List<WeatherModel>();
+
+            using (MainDBContext context = new MainDBContext())
+            {
+                foreach (var weatherModel in context.WeatherModels)
+                {
+                    if (weatherModel.RainfallDaySum >= minRainfall && weatherModel.RainfallDaySum <= maxRainfall)
                     {
                         filteredWeatherModels.Add(weatherModel);
                     }
@@ -50,5 +114,5 @@ namespace Project3Data
             return filteredBicycleThefts;
         }
     }
+    
 }
-// Maak een filter voor de fietsen die gestolen tussen 2 graden celsius bijvoorbeeld 100 fietsen tussen -5 en 5 graden
