@@ -225,7 +225,7 @@ namespace Project3Data
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            this.Size = new Size(1227, 675);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
