@@ -52,7 +52,7 @@ namespace Project3Data
 
         public static List<BicycleTheftModel> GetBicycleTheftsByWindSpeed(int minWindspeed, int maxWindspeed)
         {
-
+            
             List<BicycleTheftModel> filteredBicycleThefts = new List<BicycleTheftModel>();
             List<WeatherModel> filteredWeatherModels = new List<WeatherModel>();
 
@@ -60,7 +60,7 @@ namespace Project3Data
             {
                 foreach (var weatherModel in context.WeatherModels)
                 {
-                    if (weatherModel.HourWindspeed >= minWindspeed && weatherModel.HourWindspeed <= maxWindspeed)
+                    if (weatherModel.DayAverageWindspeed >= minWindspeed && weatherModel.DayAverageWindspeed <= maxWindspeed)
                     {
                         filteredWeatherModels.Add(weatherModel);
                     }
