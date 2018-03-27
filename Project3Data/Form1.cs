@@ -227,5 +227,20 @@ namespace Project3Data
         {
 
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnCreateSubgroup1Chart_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
