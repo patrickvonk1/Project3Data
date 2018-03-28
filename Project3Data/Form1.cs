@@ -242,5 +242,10 @@ namespace Project3Data
         {
 
         }
+
+        private void checkRainfallMin1AndMin2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
