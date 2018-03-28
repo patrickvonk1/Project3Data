@@ -225,7 +225,7 @@ namespace Project3Data
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            this.Size = new Size(1227, 675);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -239,6 +239,11 @@ namespace Project3Data
         }
 
         private void BtnCreateSubgroup1Chart_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkRainfallMin1AndMin2_CheckedChanged(object sender, EventArgs e)
         {
 
         }
