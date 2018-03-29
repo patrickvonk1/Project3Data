@@ -278,7 +278,11 @@ namespace Project3Data
         protected void label_Click(object sender, EventArgs e)
         {
             var button = sender as Label;
-            Console.WriteLine(button.Text); // write button text (name of the parking garage)
+            foreach (var item in MainDBContext.GetAllDatesForParkingGarage(button.Text))
+            {
+                Console.WriteLine(item);
+            }
+            //Console.WriteLine(button.Text); // write button text (name of the parking garage)
 
             // Make new view!
         }

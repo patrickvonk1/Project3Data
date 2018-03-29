@@ -131,6 +131,27 @@ namespace Project3Data
             return allParkingGarageNames;
 
         }
+        
+        public static List<string> GetAllDatesForParkingGarage(string name)
+        {
+            List<string> allDates = new List<string>();
+
+            using (MainDBContext context = new MainDBContext())
+            {
+                foreach (var info in context.ParkingGarageModel)
+                {
+                    if(info.Name == name)
+                    {
+
+                        // de data ziet er uit als 00/00/0000 00:00:00
+                        // c# heeft een split functie je kan de string splitten op de " " [spatie]
+                        // vervolgends kan je de contain functie op de index[0] van het split resultaat.
+                        allDates.Add(info.Date.ToString());
+                    }
+                }
+            }
+            return allDates;
+        }
     }
 }
     
