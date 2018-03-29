@@ -138,15 +138,20 @@ namespace Project3Data
 
             using (MainDBContext context = new MainDBContext())
             {
-                foreach (var info in context.ParkingGarageModel)
+                
+                foreach (var parkingGarage in context.ParkingGarageModel)
                 {
-                    if(info.Name == name)
+                    if (parkingGarage.Name == name)                    
                     {
+                        string[] newdate = parkingGarage.Date.ToString().Split(' ');
+                        if (allDates.Contains(newdate[0]) == false)
+                        {
+                            allDates.Add(newdate[0]);
+                        }
 
                         // de data ziet er uit als 00/00/0000 00:00:00
                         // c# heeft een split functie je kan de string splitten op de " " [spatie]
                         // vervolgends kan je de contain functie op de index[0] van het split resultaat.
-                        allDates.Add(info.Date.ToString());
                     }
                 }
             }
