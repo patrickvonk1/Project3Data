@@ -128,6 +128,7 @@ namespace Project3Data
                     }
                 }
             }
+            allParkingGarageNames.Add("All parking garages");
             return allParkingGarageNames;
 
         }
@@ -143,7 +144,7 @@ namespace Project3Data
                 
                 foreach (var parkingGarage in parkingGaragesByDate)
                 {
-                    if (parkingGarage.Name == name)                    
+                    if (parkingGarage.Name == name || name == "All parking garages")                    
                     {
                         string[] newdate = parkingGarage.Date.ToString().Split(' ');
                         if (allDates.Contains(newdate[0]) == false)
