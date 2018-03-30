@@ -250,13 +250,13 @@ namespace Project3Data
                 Point p = new Point(0, 50 + i * 40);
                 newBtn.Text = garagaName;
                 newBtn.Location = p;
-                newBtn.Click += new EventHandler(button_Click);
+                //newBtn.Click += new EventHandler(button_Click);
              
                 
 
                 Label newLabel = new Label();
                 newLabel.Text = garagaName;
-                newLabel.Width = 300;
+                newLabel.Width = 230;
                 newLabel.Location = new Point(20, 7);
                 newLabel.ForeColor = Color.White;
                 newLabel.BringToFront();
@@ -268,19 +268,19 @@ namespace Project3Data
             }
         }
 
-        protected void button_Click(object sender, EventArgs e)
-        {
-            var button = sender as Panel;
-            Console.WriteLine(button.Text); // write button text (name of the parking garage)
+        //protected void button_Click(object sender, EventArgs e)
+        //{
+        //    var button = sender as Panel;
+        //    Console.WriteLine(button.Text); // write button text (name of the parking garage)
            
-            // Make new view!
-        }
+        //    // Make new view!
+        //}
         protected void label_Click(object sender, EventArgs e)
         {
             var button = sender as Label;
             foreach (var item in MainDBContext.GetAllDatesForParkingGarage(button.Text))
             {
-                Console.WriteLine(item);
+                Console.WriteLine(item); // write all dates
             }
             //Console.WriteLine(button.Text); // write button text (name of the parking garage)
 
