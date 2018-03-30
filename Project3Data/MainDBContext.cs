@@ -128,8 +128,61 @@ namespace Project3Data
                     }
                 }
             }
+            allParkingGarageNames.Add("All parking garages");
             return allParkingGarageNames;
 
+        }
+        
+        public static List<string> GetAllDatesForParkingGarage(string name)
+        {
+            List<string> allDates = new List<string>();
+
+            using (MainDBContext context = new MainDBContext())
+            {
+                var allParkingGarages = context.ParkingGarageModel;
+                var parkingGaragesByDate = allParkingGarages.OrderBy(p => p.Date);
+                
+                foreach (var parkingGarage in parkingGaragesByDate)
+                {
+                    if (parkingGarage.Name == name || name == "All parking garages")                    
+                    {
+                        string[] newdate = parkingGarage.Date.ToString().Split(' ');
+                        if (allDates.Contains(newdate[0]) == false)
+                        {
+                            allDates.Add(newdate[0]);
+                        }
+                        // de data ziet er uit als 00/00/0000 00:00:00
+                        // c# heeft een split functie je kan de string splitten op de " " [spatie]
+                        // vervolgends kan je de contain functie op de index[0] van het split resultaat.
+                    }
+                }
+            }
+            return allDates;
+        }
+
+        public static List<string> GetAlltimesForParkingGarage(string name,string date)
+        {
+            List<string> allTimes = new List<string>();
+
+            using (MainDBContext context = new MainDBContext())
+            {
+                var allParkingGarages = context.ParkingGarageModel;
+                var parkingGaragesByDate = allParkingGarages.OrderBy(p => p.Date);
+
+                foreach (var parkingGarage in parkingGaragesByDate)
+                {
+                    if (parkingGarage.Name == name || name == "All parking garages")
+                    {
+                        string[] newdate = parkingGarage.Date.ToString().Split(' ');
+                        if (allTimes.Contains(newdate[1]) == false && newdate[0] == date)
+                        {
+                            string[] fixDate = newdate[1].Split(':');
+                            allTimes.Add(fixDate[0] + ":00");
+                        }
+                    }
+                }
+            }
+            return allTimes;
         }
     }
 }

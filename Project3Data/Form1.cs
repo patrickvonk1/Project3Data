@@ -13,6 +13,7 @@ using System.Windows.Forms;
 
 namespace Project3Data
 {
+
     public partial class Form1 : Form
     {
         public Form1()
@@ -227,7 +228,7 @@ namespace Project3Data
             using (MainDBContext dbContext = new MainDBContext())
             {
                 //dbContext.BicycleThefts.AddRange(bicycleTheftModels);
-                dbContext.ParkingGarageModel.AddRange(parkingModels);
+                //dbContext.ParkingGarageModel.AddRange(parkingModels);
                 //dbContext.WeatherModels.AddRange(weatherModels);
 
                 await dbContext.SaveChangesAsync();
@@ -236,7 +237,9 @@ namespace Project3Data
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            panel1.Visible = false;
             this.Size = new Size(1227, 675);
+            CreateButtonsParkingGarages();
         }
 
         private List<BicycleTheftModel> GetBicycleTheftsByKeywordsFromCheckBoxes()
@@ -577,6 +580,73 @@ namespace Project3Data
 
             chartSubgroup1.DataBind();
             chartSubgroup1.Visible = true;
+        }
+
+        private void CreateButtonsParkingGarages()
+        {
+            int i = 0;
+            foreach (var garagaName in MainDBContext.GetAllParkingGarageName())
+            {
+                Panel newBtn = new Panel();
+                newBtn.Width = 250;
+                newBtn.Height = 35;
+                newBtn.Visible = true;
+                newBtn.BackgroundImage = panel1.BackgroundImage;
+                newBtn.BackColor = Color.Transparent;
+                newBtn.BackgroundImageLayout = ImageLayout.Zoom;
+                Point p = new Point(0, 50 + i * 40);
+                newBtn.Text = garagaName;
+                newBtn.Location = p;
+                //newBtn.Click += new EventHandler(button_Click);
+             
+                
+
+                Label newLabel = new Label();
+                newLabel.Text = garagaName;
+                newLabel.Width = 230;
+                newLabel.Location = new Point(20, 7);
+                newLabel.ForeColor = Color.White;
+                newLabel.BringToFront();
+                newLabel.Click += new EventHandler(label_Click);
+                newBtn.Controls.Add(newLabel);
+
+                this.tabPage1.Controls.Add(newBtn);
+                i++;
+            }
+        }
+
+        //protected void button_Click(object sender, EventArgs e)
+        //{
+        //    var button = sender as Panel;
+        //    Console.WriteLine(button.Text); // write button text (name of the parking garage)
+
+        //    // Make new view!
+        //}
+
+        string selectParkingGaragename;
+        protected void label_Click(object sender, EventArgs e)
+        {
+            var button = sender as Label;
+            comboBox1.Items.Clear();
+            selectParkingGaragename = button.Text;
+            foreach (var item in MainDBContext.GetAllDatesForParkingGarage(button.Text))
+            {
+                //Console.WriteLine(item); // write all dates
+                comboBox1.Items.Add(item);
+            }
+            //Console.WriteLine(button.Text); // write button text (name of the parking garage)
+
+            // Make new view!
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine(comboBox1.Text);
+            comboBox2.Items.Clear();
+            foreach (var item in MainDBContext.GetAlltimesForParkingGarage(selectParkingGaragename,comboBox1.Text))
+            {
+                comboBox2.Items.Add(item);
+            }
         }
     }
 }
