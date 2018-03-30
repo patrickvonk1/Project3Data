@@ -13,6 +13,7 @@ using System.Windows.Forms;
 
 namespace Project3Data
 {
+
     public partial class Form1 : Form
     {
         public Form1()
@@ -272,19 +273,34 @@ namespace Project3Data
         //{
         //    var button = sender as Panel;
         //    Console.WriteLine(button.Text); // write button text (name of the parking garage)
-           
+
         //    // Make new view!
         //}
+
+        string selectParkingGaragename;
         protected void label_Click(object sender, EventArgs e)
         {
             var button = sender as Label;
+            comboBox1.Items.Clear();
+            selectParkingGaragename = button.Text;
             foreach (var item in MainDBContext.GetAllDatesForParkingGarage(button.Text))
             {
-                Console.WriteLine(item); // write all dates
+                //Console.WriteLine(item); // write all dates
+                comboBox1.Items.Add(item);
             }
             //Console.WriteLine(button.Text); // write button text (name of the parking garage)
 
             // Make new view!
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine(comboBox1.Text);
+            comboBox2.Items.Clear();
+            foreach (var item in MainDBContext.GetAlltimesForParkingGarage(selectParkingGaragename,comboBox1.Text))
+            {
+                comboBox2.Items.Add(item);
+            }
         }
     }
 }

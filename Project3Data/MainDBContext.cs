@@ -159,6 +159,31 @@ namespace Project3Data
             }
             return allDates;
         }
+
+        public static List<string> GetAlltimesForParkingGarage(string name,string date)
+        {
+            List<string> allTimes = new List<string>();
+
+            using (MainDBContext context = new MainDBContext())
+            {
+                var allParkingGarages = context.ParkingGarageModel;
+                var parkingGaragesByDate = allParkingGarages.OrderBy(p => p.Date);
+
+                foreach (var parkingGarage in parkingGaragesByDate)
+                {
+                    if (parkingGarage.Name == name || name == "All parking garages")
+                    {
+                        string[] newdate = parkingGarage.Date.ToString().Split(' ');
+                        if (allTimes.Contains(newdate[1]) == false && newdate[0] == date)
+                        {
+                            string[] fixDate = newdate[1].Split(':');
+                            allTimes.Add(fixDate[0] + ":00");
+                        }
+                    }
+                }
+            }
+            return allTimes;
+        }
     }
 }
     
