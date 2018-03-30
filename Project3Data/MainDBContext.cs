@@ -18,7 +18,7 @@ namespace Project3Data
         public DbSet<WeatherModel> WeatherModels { get; set; }
         public DbSet<ParkingGarageModel> ParkingGarageModel { get; set; }
 
-        public static List<BicycleTheftModel> GetBicycleTheftsByTemperature(int minTemperature, int maxTemperature)
+        public static List<BicycleTheftModel> GetBicycleTheftsByTemperature(float minTemperature, float maxTemperature)
         {
 
             List<BicycleTheftModel> filteredBicycleThefts = new List<BicycleTheftModel>();
@@ -50,7 +50,7 @@ namespace Project3Data
             return filteredBicycleThefts;
         }
 
-        public static List<BicycleTheftModel> GetBicycleTheftsByWindSpeed(int minWindspeed, int maxWindspeed)
+        public static List<BicycleTheftModel> GetBicycleTheftsByWindSpeed(float minWindspeed, float maxWindspeed)
         {
             
             List<BicycleTheftModel> filteredBicycleThefts = new List<BicycleTheftModel>();
@@ -82,7 +82,7 @@ namespace Project3Data
             return filteredBicycleThefts;
         }
 
-        public static List<BicycleTheftModel> GetBicycleTheftsByRainfall(int minRainfall, int maxRainfall)
+        public static List<BicycleTheftModel> GetBicycleTheftsByRainfall(float minRainfall, float maxRainfall)
         {
 
             List<BicycleTheftModel> filteredBicycleThefts = new List<BicycleTheftModel>();

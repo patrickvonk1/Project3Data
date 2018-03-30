@@ -18,6 +18,19 @@ namespace Project3Data
         public Form1()
         {
             InitializeComponent();
+
+            List<string> names = new List<string>();
+
+            //using (var mark = new MainDBContext())
+            //{
+            //    foreach (var theft in mark.BicycleThefts)
+            //    {
+            //        if (!names.Contains(theft.Keyword))
+            //        {
+            //            names.Add(theft.Keyword);
+            //        }
+            //    }
+            //}
         }
 
         #region Other Methods
@@ -124,8 +137,6 @@ namespace Project3Data
             List<string> allLinesText = File.ReadAllLines(@"Weer2011-2013.txt").ToList();
             List<WeatherModel> filteredList = new List<WeatherModel>();
 
-
-
             int totalWeatherModelsCount = 0;
             foreach (var line in allLinesText)
             {
@@ -228,9 +239,344 @@ namespace Project3Data
             this.Size = new Size(1227, 675);
         }
 
+        private List<BicycleTheftModel> GetBicycleTheftsByKeywordsFromCheckBoxes()
+        {
+            //TODO: First check if any of the bicycle checkboxes are selected if not dont get stuff from the database
+            List<BicycleTheftModel> allBicycleThefts = new List<BicycleTheftModel>();
+            List<BicycleTheftModel> listToReturn = new List<BicycleTheftModel>();
+
+            using (MainDBContext context = new MainDBContext())
+            {
+                allBicycleThefts.AddRange(context.BicycleThefts);
+            }
+
+            if (checkDamesFiets.Checked)
+            {
+                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "DAMES"));
+            }
+
+            if (checkHerenFiets.Checked)
+            {
+                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "HEREN"));
+            }
+
+            if (checkKinderFiets.Checked)
+            {
+                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "KINDER"));
+            }
+
+            if (checkOpoeFiets.Checked)
+            {
+                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "OPOE"));
+            }
+
+            if (checkCrossFiets.Checked)
+            {
+                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "CROSS"));
+            }
+
+            if (checkSportFiets.Checked)
+            {
+                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "SPORT"));
+            }
+
+            if (checkBakFiets.Checked)
+            {
+                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "BAK"));
+            }
+
+            if (checkTandem.Checked)
+            {
+                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "TANDEM"));
+            }
+
+            if (checkDriewieler.Checked)
+            {
+                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "DRIEWIELER"));
+            }
+
+            if (checkElektrischeFiets.Checked)
+            {
+                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "ELEKTRISCHE"));
+            }
+
+            if (checkVouwFiets.Checked)
+            {
+                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "VOUW"));
+            }
+
+            return listToReturn;
+        }
+
+        private void FilterBicycleTheftsByRainFallSumCheckBoxes(ref List<BicycleTheftModel> listToFilter)
+        {
+            List<WeatherModel> filteredWeatherModels = new List<WeatherModel>();
+            List<WeatherModel> allWeatherModels = new List<WeatherModel>();
+
+            using (var context = new MainDBContext())
+            {
+                allWeatherModels.AddRange(context.WeatherModels);
+            }
+
+            if (checkRainfall0And3.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.RainfallDaySum >= 0 && w.RainfallDaySum < 3));
+            }
+
+            if (checkRainfall3And6.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.RainfallDaySum >= 3 && w.RainfallDaySum < 6));
+            }
+
+            if (checkRainfall6And9.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.RainfallDaySum >= 6 && w.RainfallDaySum < 9));
+            }
+
+            if (checkRainfall9And12.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.RainfallDaySum >= 9 && w.RainfallDaySum < 12));
+            }
+
+            if (checkRainfall12And15.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.RainfallDaySum >= 12 && w.RainfallDaySum < 15));
+            }
+
+            if (checkRainfall15And18.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.RainfallDaySum >= 15 && w.RainfallDaySum < 18));
+            }
+
+            if (checkRainfall18And21.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.RainfallDaySum >= 18 && w.RainfallDaySum < 21));
+            }
+
+            if (checkRainfall21And24.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.RainfallDaySum >= 21 && w.RainfallDaySum < 24));
+            }
+
+            if (checkRainfall24And27.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.RainfallDaySum >= 24 && w.RainfallDaySum < 27));
+            }
+
+            if (checkRainfall27And30.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.RainfallDaySum >= 27 && w.RainfallDaySum < 30));
+            }
+
+            if (checkRainfall30And33.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.RainfallDaySum >= 30 && w.RainfallDaySum < 33));
+            }
+
+            List<BicycleTheftModel> filteredBicycleThefts = new List<BicycleTheftModel>();
+            foreach (var theft in listToFilter)
+            {
+                foreach (var weather in filteredWeatherModels)
+                {
+                    if (theft.Date == weather.Date)
+                    {
+                        filteredBicycleThefts.Add(theft);
+                        break;
+                    }
+                }
+            }
+
+            if (filteredBicycleThefts.Count > 0)
+            {
+                listToFilter = new List<BicycleTheftModel>(filteredBicycleThefts);
+            }
+        }
+
+        private void FilterBicycleTheftsByTemperatureCheckBoxes(ref List<BicycleTheftModel> listToFilter)
+        {
+            List<WeatherModel> filteredWeatherModels = new List<WeatherModel>();
+            List<WeatherModel> allWeatherModels = new List<WeatherModel>();
+
+            using (var context = new MainDBContext())
+            {
+                allWeatherModels.AddRange(context.WeatherModels);
+            }
+
+            if (checkTemperatureMin10AndMin5.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageTemperature >= -10 && w.DayAverageTemperature < -5));
+            }
+
+            if (checkTemperatureMin5And0.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageTemperature >= -5 && w.DayAverageTemperature < 0));
+            }
+
+            if (checkTemperature0And5.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageTemperature >= 0 && w.DayAverageTemperature < 5));
+            }
+
+            if (checkTemperature5And10.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageTemperature >= 5 && w.DayAverageTemperature < 10));
+            }
+
+            if (checkTemperature10And15.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageTemperature >= 10 && w.DayAverageTemperature < 15));
+            }
+
+            if (checkTemperature15And20.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageTemperature >= 15 && w.DayAverageTemperature < 20));
+            }
+
+            if (checkTemperature20And25.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageTemperature >= 20 && w.DayAverageTemperature < 25));
+            }
+
+            if (checkTemperature25And30.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageTemperature >= 25 && w.DayAverageTemperature < 30));
+            }
+
+            if (checkTemperature30And35.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageTemperature >= 30 && w.DayAverageTemperature < 35));
+            }
+
+            List<BicycleTheftModel> filteredBicycleThefts = new List<BicycleTheftModel>();
+            foreach (var theft in listToFilter)
+            {
+                foreach (var weather in filteredWeatherModels)
+                {
+                    if (theft.Date == weather.Date)
+                    {
+                        filteredBicycleThefts.Add(theft);
+                        break;
+                    }
+                }
+            }
+
+            if (filteredBicycleThefts.Count > 0)
+            {
+                listToFilter = new List<BicycleTheftModel>(filteredBicycleThefts);
+            }
+        }
+
+        private void FilterBicycleTheftsByWindspeedCheckBoxes(ref List<BicycleTheftModel> listToFilter)
+        {
+            List<WeatherModel> filteredWeatherModels = new List<WeatherModel>();
+            List<WeatherModel> allWeatherModels = new List<WeatherModel>();
+
+            using (var context = new MainDBContext())
+            {
+                allWeatherModels.AddRange(context.WeatherModels);
+            }
+
+            if (checkWindspeed0And1.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageWindspeed >= 0 && w.DayAverageWindspeed < 1));
+            }
+
+            if (checkWindspeed1And2.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageWindspeed >= 1 && w.DayAverageWindspeed < 2));
+            }
+
+            if (checkWindspeed2And3.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageWindspeed >= 2 && w.DayAverageWindspeed < 3));
+            }
+
+            if (checkWindspeed3And4.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageWindspeed >= 3 && w.DayAverageWindspeed < 4));
+            }
+
+            if (checkWindspeed4And5.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageWindspeed >= 4 && w.DayAverageWindspeed < 5));
+            }
+
+            if (checkWindspeed5And6.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageWindspeed >= 5 && w.DayAverageWindspeed < 6));
+            }
+
+            if (checkWindspeed6And7.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageWindspeed >= 6 && w.DayAverageWindspeed < 7));
+            }
+
+            if (checkWindspeed7And8.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageWindspeed >= 7 && w.DayAverageWindspeed < 8));
+            }
+
+            if (checkWindspeed8And9.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageWindspeed >= 8 && w.DayAverageWindspeed < 9));
+            }
+
+            if (checkWindspeed9And10.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageWindspeed >= 9 && w.DayAverageWindspeed < 10));
+            }
+
+            if (checkWindspeed10And11.Checked)
+            {
+                filteredWeatherModels.AddRange(allWeatherModels.Where(w => w.DayAverageWindspeed >= 10 && w.DayAverageWindspeed < 11));
+            }
+
+            List<BicycleTheftModel> filteredBicycleThefts = new List<BicycleTheftModel>();
+            foreach (var theft in listToFilter)
+            {
+                foreach (var weather in filteredWeatherModels)
+                {
+                    if (theft.Date == weather.Date)
+                    {
+                        filteredBicycleThefts.Add(theft);
+                        break;
+                    }
+                }
+            }
+
+            if (filteredBicycleThefts.Count > 0)
+            {
+                listToFilter = new List<BicycleTheftModel>(filteredBicycleThefts);
+            }
+        }
+
         private void BtnCreateSubgroup1Chart_Click(object sender, EventArgs e)
         {
+            var bicycleByKeywords = GetBicycleTheftsByKeywordsFromCheckBoxes();
+            FilterBicycleTheftsByRainFallSumCheckBoxes(ref bicycleByKeywords);
+            FilterBicycleTheftsByTemperatureCheckBoxes(ref bicycleByKeywords);
+            FilterBicycleTheftsByWindspeedCheckBoxes(ref bicycleByKeywords);
 
+            Dictionary<string, int> numberOfTheftsPerKeywordDic = new Dictionary<string, int>();
+
+            foreach (var theft in bicycleByKeywords)
+            {
+                if (!numberOfTheftsPerKeywordDic.ContainsKey(theft.Keyword))//Keyword doesn't exist yet in the dictionary, get the count of the total thefts by this keyword
+                {
+                    //Example result could be ["DAMES", 8000] meaning, there are 8000 DAMES bicycleThefts
+                    numberOfTheftsPerKeywordDic.Add(theft.Keyword, bicycleByKeywords.Count(w => w.Keyword == theft.Keyword));
+                }
+            }
+
+            chartSubgroup1.Series["Thefts"].Points.Clear();
+
+            foreach (var dicPair in numberOfTheftsPerKeywordDic)
+            {
+                chartSubgroup1.Series["Thefts"].Points.AddXY(dicPair.Key.ToString().ToLower(), dicPair.Value);
+            }
+
+            chartSubgroup1.DataBind();
+            chartSubgroup1.Visible = true;
         }
     }
 }

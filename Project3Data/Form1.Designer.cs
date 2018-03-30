@@ -36,10 +36,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.firefoxSubTabControl1 = new FirefoxSubTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.chartSubgroup1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.BtnCreateSubgroup1Chart = new System.Windows.Forms.Button();
             this.checkWindspeed10And11 = new System.Windows.Forms.CheckBox();
             this.checkWindspeed9And10 = new System.Windows.Forms.CheckBox();
@@ -90,6 +94,7 @@
             this.firefoxSubTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartSubgroup1)).BeginInit();
             this.SuspendLayout();
             // 
             // firefoxSubTabControl1
@@ -138,6 +143,7 @@
             this.tabPage2.BackColor = System.Drawing.Color.White;
             this.tabPage2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPage2.BackgroundImage")));
             this.tabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tabPage2.Controls.Add(this.chartSubgroup1);
             this.tabPage2.Controls.Add(this.BtnCreateSubgroup1Chart);
             this.tabPage2.Controls.Add(this.checkWindspeed10And11);
             this.tabPage2.Controls.Add(this.checkWindspeed9And10);
@@ -195,10 +201,27 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Diefstal & Weer";
             // 
+            // chartSubgroup1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartSubgroup1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartSubgroup1.Legends.Add(legend1);
+            this.chartSubgroup1.Location = new System.Drawing.Point(981, 117);
+            this.chartSubgroup1.Name = "chartSubgroup1";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Thefts";
+            this.chartSubgroup1.Series.Add(series1);
+            this.chartSubgroup1.Size = new System.Drawing.Size(445, 409);
+            this.chartSubgroup1.TabIndex = 49;
+            this.chartSubgroup1.Text = "chart1";
+            // 
             // BtnCreateSubgroup1Chart
             // 
             this.BtnCreateSubgroup1Chart.Location = new System.Drawing.Point(1264, 651);
-            this.BtnCreateSubgroup1Chart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnCreateSubgroup1Chart.Margin = new System.Windows.Forms.Padding(4);
             this.BtnCreateSubgroup1Chart.Name = "BtnCreateSubgroup1Chart";
             this.BtnCreateSubgroup1Chart.Size = new System.Drawing.Size(301, 47);
             this.BtnCreateSubgroup1Chart.TabIndex = 48;
@@ -208,8 +231,8 @@
             // 
             // checkWindspeed10And11
             // 
-            this.checkWindspeed10And11.Location = new System.Drawing.Point(1363, 505);
-            this.checkWindspeed10And11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkWindspeed10And11.Location = new System.Drawing.Point(623, 502);
+            this.checkWindspeed10And11.Margin = new System.Windows.Forms.Padding(4);
             this.checkWindspeed10And11.Name = "checkWindspeed10And11";
             this.checkWindspeed10And11.Size = new System.Drawing.Size(161, 28);
             this.checkWindspeed10And11.TabIndex = 47;
@@ -218,8 +241,8 @@
             // 
             // checkWindspeed9And10
             // 
-            this.checkWindspeed9And10.Location = new System.Drawing.Point(1363, 469);
-            this.checkWindspeed9And10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkWindspeed9And10.Location = new System.Drawing.Point(623, 466);
+            this.checkWindspeed9And10.Margin = new System.Windows.Forms.Padding(4);
             this.checkWindspeed9And10.Name = "checkWindspeed9And10";
             this.checkWindspeed9And10.Size = new System.Drawing.Size(161, 28);
             this.checkWindspeed9And10.TabIndex = 46;
@@ -228,8 +251,8 @@
             // 
             // checkWindspeed8And9
             // 
-            this.checkWindspeed8And9.Location = new System.Drawing.Point(1363, 433);
-            this.checkWindspeed8And9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkWindspeed8And9.Location = new System.Drawing.Point(623, 430);
+            this.checkWindspeed8And9.Margin = new System.Windows.Forms.Padding(4);
             this.checkWindspeed8And9.Name = "checkWindspeed8And9";
             this.checkWindspeed8And9.Size = new System.Drawing.Size(161, 28);
             this.checkWindspeed8And9.TabIndex = 45;
@@ -238,8 +261,8 @@
             // 
             // checkWindspeed7And8
             // 
-            this.checkWindspeed7And8.Location = new System.Drawing.Point(1363, 398);
-            this.checkWindspeed7And8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkWindspeed7And8.Location = new System.Drawing.Point(623, 395);
+            this.checkWindspeed7And8.Margin = new System.Windows.Forms.Padding(4);
             this.checkWindspeed7And8.Name = "checkWindspeed7And8";
             this.checkWindspeed7And8.Size = new System.Drawing.Size(161, 28);
             this.checkWindspeed7And8.TabIndex = 44;
@@ -248,8 +271,8 @@
             // 
             // checkWindspeed6And7
             // 
-            this.checkWindspeed6And7.Location = new System.Drawing.Point(1363, 361);
-            this.checkWindspeed6And7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkWindspeed6And7.Location = new System.Drawing.Point(623, 358);
+            this.checkWindspeed6And7.Margin = new System.Windows.Forms.Padding(4);
             this.checkWindspeed6And7.Name = "checkWindspeed6And7";
             this.checkWindspeed6And7.Size = new System.Drawing.Size(161, 28);
             this.checkWindspeed6And7.TabIndex = 43;
@@ -258,8 +281,8 @@
             // 
             // checkWindspeed5And6
             // 
-            this.checkWindspeed5And6.Location = new System.Drawing.Point(1363, 325);
-            this.checkWindspeed5And6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkWindspeed5And6.Location = new System.Drawing.Point(623, 322);
+            this.checkWindspeed5And6.Margin = new System.Windows.Forms.Padding(4);
             this.checkWindspeed5And6.Name = "checkWindspeed5And6";
             this.checkWindspeed5And6.Size = new System.Drawing.Size(161, 28);
             this.checkWindspeed5And6.TabIndex = 42;
@@ -268,8 +291,8 @@
             // 
             // checkWindspeed4And5
             // 
-            this.checkWindspeed4And5.Location = new System.Drawing.Point(1363, 289);
-            this.checkWindspeed4And5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkWindspeed4And5.Location = new System.Drawing.Point(623, 286);
+            this.checkWindspeed4And5.Margin = new System.Windows.Forms.Padding(4);
             this.checkWindspeed4And5.Name = "checkWindspeed4And5";
             this.checkWindspeed4And5.Size = new System.Drawing.Size(161, 28);
             this.checkWindspeed4And5.TabIndex = 41;
@@ -278,8 +301,8 @@
             // 
             // checkWindspeed3And4
             // 
-            this.checkWindspeed3And4.Location = new System.Drawing.Point(1363, 254);
-            this.checkWindspeed3And4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkWindspeed3And4.Location = new System.Drawing.Point(623, 251);
+            this.checkWindspeed3And4.Margin = new System.Windows.Forms.Padding(4);
             this.checkWindspeed3And4.Name = "checkWindspeed3And4";
             this.checkWindspeed3And4.Size = new System.Drawing.Size(161, 28);
             this.checkWindspeed3And4.TabIndex = 40;
@@ -288,8 +311,8 @@
             // 
             // checkWindspeed2And3
             // 
-            this.checkWindspeed2And3.Location = new System.Drawing.Point(1363, 217);
-            this.checkWindspeed2And3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkWindspeed2And3.Location = new System.Drawing.Point(623, 214);
+            this.checkWindspeed2And3.Margin = new System.Windows.Forms.Padding(4);
             this.checkWindspeed2And3.Name = "checkWindspeed2And3";
             this.checkWindspeed2And3.Size = new System.Drawing.Size(161, 28);
             this.checkWindspeed2And3.TabIndex = 39;
@@ -298,8 +321,8 @@
             // 
             // checkWindspeed1And2
             // 
-            this.checkWindspeed1And2.Location = new System.Drawing.Point(1363, 181);
-            this.checkWindspeed1And2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkWindspeed1And2.Location = new System.Drawing.Point(623, 178);
+            this.checkWindspeed1And2.Margin = new System.Windows.Forms.Padding(4);
             this.checkWindspeed1And2.Name = "checkWindspeed1And2";
             this.checkWindspeed1And2.Size = new System.Drawing.Size(161, 28);
             this.checkWindspeed1And2.TabIndex = 38;
@@ -308,8 +331,8 @@
             // 
             // checkWindspeed0And1
             // 
-            this.checkWindspeed0And1.Location = new System.Drawing.Point(1363, 145);
-            this.checkWindspeed0And1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkWindspeed0And1.Location = new System.Drawing.Point(623, 142);
+            this.checkWindspeed0And1.Margin = new System.Windows.Forms.Padding(4);
             this.checkWindspeed0And1.Name = "checkWindspeed0And1";
             this.checkWindspeed0And1.Size = new System.Drawing.Size(161, 28);
             this.checkWindspeed0And1.TabIndex = 37;
@@ -318,8 +341,8 @@
             // 
             // checkTemperature30And35
             // 
-            this.checkTemperature30And35.Location = new System.Drawing.Point(973, 436);
-            this.checkTemperature30And35.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkTemperature30And35.Location = new System.Drawing.Point(447, 433);
+            this.checkTemperature30And35.Margin = new System.Windows.Forms.Padding(4);
             this.checkTemperature30And35.Name = "checkTemperature30And35";
             this.checkTemperature30And35.Size = new System.Drawing.Size(161, 28);
             this.checkTemperature30And35.TabIndex = 34;
@@ -328,8 +351,8 @@
             // 
             // checkTemperature25And30
             // 
-            this.checkTemperature25And30.Location = new System.Drawing.Point(973, 400);
-            this.checkTemperature25And30.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkTemperature25And30.Location = new System.Drawing.Point(447, 397);
+            this.checkTemperature25And30.Margin = new System.Windows.Forms.Padding(4);
             this.checkTemperature25And30.Name = "checkTemperature25And30";
             this.checkTemperature25And30.Size = new System.Drawing.Size(161, 28);
             this.checkTemperature25And30.TabIndex = 33;
@@ -338,8 +361,8 @@
             // 
             // checkTemperature20And25
             // 
-            this.checkTemperature20And25.Location = new System.Drawing.Point(973, 364);
-            this.checkTemperature20And25.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkTemperature20And25.Location = new System.Drawing.Point(447, 361);
+            this.checkTemperature20And25.Margin = new System.Windows.Forms.Padding(4);
             this.checkTemperature20And25.Name = "checkTemperature20And25";
             this.checkTemperature20And25.Size = new System.Drawing.Size(161, 28);
             this.checkTemperature20And25.TabIndex = 32;
@@ -348,8 +371,8 @@
             // 
             // checkTemperature15And20
             // 
-            this.checkTemperature15And20.Location = new System.Drawing.Point(973, 327);
-            this.checkTemperature15And20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkTemperature15And20.Location = new System.Drawing.Point(447, 324);
+            this.checkTemperature15And20.Margin = new System.Windows.Forms.Padding(4);
             this.checkTemperature15And20.Name = "checkTemperature15And20";
             this.checkTemperature15And20.Size = new System.Drawing.Size(161, 28);
             this.checkTemperature15And20.TabIndex = 31;
@@ -358,8 +381,8 @@
             // 
             // checkTemperature10And15
             // 
-            this.checkTemperature10And15.Location = new System.Drawing.Point(973, 292);
-            this.checkTemperature10And15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkTemperature10And15.Location = new System.Drawing.Point(447, 289);
+            this.checkTemperature10And15.Margin = new System.Windows.Forms.Padding(4);
             this.checkTemperature10And15.Name = "checkTemperature10And15";
             this.checkTemperature10And15.Size = new System.Drawing.Size(161, 28);
             this.checkTemperature10And15.TabIndex = 30;
@@ -368,8 +391,8 @@
             // 
             // checkTemperature5And10
             // 
-            this.checkTemperature5And10.Location = new System.Drawing.Point(973, 254);
-            this.checkTemperature5And10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkTemperature5And10.Location = new System.Drawing.Point(447, 251);
+            this.checkTemperature5And10.Margin = new System.Windows.Forms.Padding(4);
             this.checkTemperature5And10.Name = "checkTemperature5And10";
             this.checkTemperature5And10.Size = new System.Drawing.Size(161, 28);
             this.checkTemperature5And10.TabIndex = 29;
@@ -378,8 +401,8 @@
             // 
             // checkTemperature0And5
             // 
-            this.checkTemperature0And5.Location = new System.Drawing.Point(973, 217);
-            this.checkTemperature0And5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkTemperature0And5.Location = new System.Drawing.Point(447, 214);
+            this.checkTemperature0And5.Margin = new System.Windows.Forms.Padding(4);
             this.checkTemperature0And5.Name = "checkTemperature0And5";
             this.checkTemperature0And5.Size = new System.Drawing.Size(161, 28);
             this.checkTemperature0And5.TabIndex = 28;
@@ -388,8 +411,8 @@
             // 
             // checkTemperatureMin5And0
             // 
-            this.checkTemperatureMin5And0.Location = new System.Drawing.Point(973, 181);
-            this.checkTemperatureMin5And0.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkTemperatureMin5And0.Location = new System.Drawing.Point(447, 178);
+            this.checkTemperatureMin5And0.Margin = new System.Windows.Forms.Padding(4);
             this.checkTemperatureMin5And0.Name = "checkTemperatureMin5And0";
             this.checkTemperatureMin5And0.Size = new System.Drawing.Size(161, 28);
             this.checkTemperatureMin5And0.TabIndex = 27;
@@ -398,8 +421,8 @@
             // 
             // checkTemperatureMin10AndMin5
             // 
-            this.checkTemperatureMin10AndMin5.Location = new System.Drawing.Point(977, 145);
-            this.checkTemperatureMin10AndMin5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkTemperatureMin10AndMin5.Location = new System.Drawing.Point(449, 142);
+            this.checkTemperatureMin10AndMin5.Margin = new System.Windows.Forms.Padding(4);
             this.checkTemperatureMin10AndMin5.Name = "checkTemperatureMin10AndMin5";
             this.checkTemperatureMin10AndMin5.Size = new System.Drawing.Size(161, 28);
             this.checkTemperatureMin10AndMin5.TabIndex = 26;
@@ -408,8 +431,8 @@
             // 
             // checkRainfall30And33
             // 
-            this.checkRainfall30And33.Location = new System.Drawing.Point(497, 498);
-            this.checkRainfall30And33.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkRainfall30And33.Location = new System.Drawing.Point(260, 498);
+            this.checkRainfall30And33.Margin = new System.Windows.Forms.Padding(4);
             this.checkRainfall30And33.Name = "checkRainfall30And33";
             this.checkRainfall30And33.Size = new System.Drawing.Size(161, 28);
             this.checkRainfall30And33.TabIndex = 25;
@@ -418,8 +441,8 @@
             // 
             // checkRainfall27And30
             // 
-            this.checkRainfall27And30.Location = new System.Drawing.Point(497, 463);
-            this.checkRainfall27And30.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkRainfall27And30.Location = new System.Drawing.Point(260, 463);
+            this.checkRainfall27And30.Margin = new System.Windows.Forms.Padding(4);
             this.checkRainfall27And30.Name = "checkRainfall27And30";
             this.checkRainfall27And30.Size = new System.Drawing.Size(161, 28);
             this.checkRainfall27And30.TabIndex = 24;
@@ -428,8 +451,8 @@
             // 
             // checkRainfall24And27
             // 
-            this.checkRainfall24And27.Location = new System.Drawing.Point(497, 427);
-            this.checkRainfall24And27.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkRainfall24And27.Location = new System.Drawing.Point(260, 427);
+            this.checkRainfall24And27.Margin = new System.Windows.Forms.Padding(4);
             this.checkRainfall24And27.Name = "checkRainfall24And27";
             this.checkRainfall24And27.Size = new System.Drawing.Size(161, 28);
             this.checkRainfall24And27.TabIndex = 23;
@@ -438,8 +461,8 @@
             // 
             // checkRainfall21And24
             // 
-            this.checkRainfall21And24.Location = new System.Drawing.Point(497, 391);
-            this.checkRainfall21And24.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkRainfall21And24.Location = new System.Drawing.Point(260, 391);
+            this.checkRainfall21And24.Margin = new System.Windows.Forms.Padding(4);
             this.checkRainfall21And24.Name = "checkRainfall21And24";
             this.checkRainfall21And24.Size = new System.Drawing.Size(161, 28);
             this.checkRainfall21And24.TabIndex = 22;
@@ -448,8 +471,8 @@
             // 
             // checkRainfall18And21
             // 
-            this.checkRainfall18And21.Location = new System.Drawing.Point(497, 354);
-            this.checkRainfall18And21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkRainfall18And21.Location = new System.Drawing.Point(260, 354);
+            this.checkRainfall18And21.Margin = new System.Windows.Forms.Padding(4);
             this.checkRainfall18And21.Name = "checkRainfall18And21";
             this.checkRainfall18And21.Size = new System.Drawing.Size(161, 28);
             this.checkRainfall18And21.TabIndex = 21;
@@ -458,8 +481,8 @@
             // 
             // checkRainfall15And18
             // 
-            this.checkRainfall15And18.Location = new System.Drawing.Point(497, 319);
-            this.checkRainfall15And18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkRainfall15And18.Location = new System.Drawing.Point(260, 319);
+            this.checkRainfall15And18.Margin = new System.Windows.Forms.Padding(4);
             this.checkRainfall15And18.Name = "checkRainfall15And18";
             this.checkRainfall15And18.Size = new System.Drawing.Size(161, 28);
             this.checkRainfall15And18.TabIndex = 20;
@@ -468,8 +491,8 @@
             // 
             // checkRainfall12And15
             // 
-            this.checkRainfall12And15.Location = new System.Drawing.Point(497, 283);
-            this.checkRainfall12And15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkRainfall12And15.Location = new System.Drawing.Point(260, 283);
+            this.checkRainfall12And15.Margin = new System.Windows.Forms.Padding(4);
             this.checkRainfall12And15.Name = "checkRainfall12And15";
             this.checkRainfall12And15.Size = new System.Drawing.Size(161, 28);
             this.checkRainfall12And15.TabIndex = 19;
@@ -478,8 +501,8 @@
             // 
             // checkRainfall9And12
             // 
-            this.checkRainfall9And12.Location = new System.Drawing.Point(500, 247);
-            this.checkRainfall9And12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkRainfall9And12.Location = new System.Drawing.Point(263, 247);
+            this.checkRainfall9And12.Margin = new System.Windows.Forms.Padding(4);
             this.checkRainfall9And12.Name = "checkRainfall9And12";
             this.checkRainfall9And12.Size = new System.Drawing.Size(161, 28);
             this.checkRainfall9And12.TabIndex = 18;
@@ -488,8 +511,8 @@
             // 
             // checkRainfall6And9
             // 
-            this.checkRainfall6And9.Location = new System.Drawing.Point(500, 210);
-            this.checkRainfall6And9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkRainfall6And9.Location = new System.Drawing.Point(263, 210);
+            this.checkRainfall6And9.Margin = new System.Windows.Forms.Padding(4);
             this.checkRainfall6And9.Name = "checkRainfall6And9";
             this.checkRainfall6And9.Size = new System.Drawing.Size(161, 28);
             this.checkRainfall6And9.TabIndex = 17;
@@ -498,8 +521,8 @@
             // 
             // checkRainfall3And6
             // 
-            this.checkRainfall3And6.Location = new System.Drawing.Point(500, 175);
-            this.checkRainfall3And6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkRainfall3And6.Location = new System.Drawing.Point(263, 175);
+            this.checkRainfall3And6.Margin = new System.Windows.Forms.Padding(4);
             this.checkRainfall3And6.Name = "checkRainfall3And6";
             this.checkRainfall3And6.Size = new System.Drawing.Size(161, 28);
             this.checkRainfall3And6.TabIndex = 16;
@@ -508,8 +531,8 @@
             // 
             // checkRainfall0And3
             // 
-            this.checkRainfall0And3.Location = new System.Drawing.Point(500, 140);
-            this.checkRainfall0And3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkRainfall0And3.Location = new System.Drawing.Point(263, 140);
+            this.checkRainfall0And3.Margin = new System.Windows.Forms.Padding(4);
             this.checkRainfall0And3.Name = "checkRainfall0And3";
             this.checkRainfall0And3.Size = new System.Drawing.Size(161, 28);
             this.checkRainfall0And3.TabIndex = 15;
@@ -519,7 +542,7 @@
             // checkVouwFiets
             // 
             this.checkVouwFiets.Location = new System.Drawing.Point(73, 498);
-            this.checkVouwFiets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkVouwFiets.Margin = new System.Windows.Forms.Padding(4);
             this.checkVouwFiets.Name = "checkVouwFiets";
             this.checkVouwFiets.Size = new System.Drawing.Size(161, 28);
             this.checkVouwFiets.TabIndex = 14;
@@ -529,7 +552,7 @@
             // checkElektrischeFiets
             // 
             this.checkElektrischeFiets.Location = new System.Drawing.Point(73, 463);
-            this.checkElektrischeFiets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkElektrischeFiets.Margin = new System.Windows.Forms.Padding(4);
             this.checkElektrischeFiets.Name = "checkElektrischeFiets";
             this.checkElektrischeFiets.Size = new System.Drawing.Size(161, 28);
             this.checkElektrischeFiets.TabIndex = 13;
@@ -539,7 +562,7 @@
             // checkTandem
             // 
             this.checkTandem.Location = new System.Drawing.Point(73, 391);
-            this.checkTandem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkTandem.Margin = new System.Windows.Forms.Padding(4);
             this.checkTandem.Name = "checkTandem";
             this.checkTandem.Size = new System.Drawing.Size(161, 28);
             this.checkTandem.TabIndex = 12;
@@ -549,7 +572,7 @@
             // checkDriewieler
             // 
             this.checkDriewieler.Location = new System.Drawing.Point(73, 427);
-            this.checkDriewieler.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkDriewieler.Margin = new System.Windows.Forms.Padding(4);
             this.checkDriewieler.Name = "checkDriewieler";
             this.checkDriewieler.Size = new System.Drawing.Size(161, 28);
             this.checkDriewieler.TabIndex = 11;
@@ -559,7 +582,7 @@
             // checkBakFiets
             // 
             this.checkBakFiets.Location = new System.Drawing.Point(73, 354);
-            this.checkBakFiets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBakFiets.Margin = new System.Windows.Forms.Padding(4);
             this.checkBakFiets.Name = "checkBakFiets";
             this.checkBakFiets.Size = new System.Drawing.Size(161, 28);
             this.checkBakFiets.TabIndex = 10;
@@ -569,7 +592,7 @@
             // checkSportFiets
             // 
             this.checkSportFiets.Location = new System.Drawing.Point(73, 319);
-            this.checkSportFiets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkSportFiets.Margin = new System.Windows.Forms.Padding(4);
             this.checkSportFiets.Name = "checkSportFiets";
             this.checkSportFiets.Size = new System.Drawing.Size(161, 28);
             this.checkSportFiets.TabIndex = 9;
@@ -579,7 +602,7 @@
             // checkCrossFiets
             // 
             this.checkCrossFiets.Location = new System.Drawing.Point(73, 283);
-            this.checkCrossFiets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkCrossFiets.Margin = new System.Windows.Forms.Padding(4);
             this.checkCrossFiets.Name = "checkCrossFiets";
             this.checkCrossFiets.Size = new System.Drawing.Size(161, 28);
             this.checkCrossFiets.TabIndex = 8;
@@ -589,7 +612,7 @@
             // checkKinderFiets
             // 
             this.checkKinderFiets.Location = new System.Drawing.Point(73, 210);
-            this.checkKinderFiets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkKinderFiets.Margin = new System.Windows.Forms.Padding(4);
             this.checkKinderFiets.Name = "checkKinderFiets";
             this.checkKinderFiets.Size = new System.Drawing.Size(161, 28);
             this.checkKinderFiets.TabIndex = 7;
@@ -599,7 +622,7 @@
             // checkOpoeFiets
             // 
             this.checkOpoeFiets.Location = new System.Drawing.Point(73, 247);
-            this.checkOpoeFiets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkOpoeFiets.Margin = new System.Windows.Forms.Padding(4);
             this.checkOpoeFiets.Name = "checkOpoeFiets";
             this.checkOpoeFiets.Size = new System.Drawing.Size(161, 28);
             this.checkOpoeFiets.TabIndex = 6;
@@ -609,7 +632,7 @@
             // checkHerenFiets
             // 
             this.checkHerenFiets.Location = new System.Drawing.Point(73, 175);
-            this.checkHerenFiets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkHerenFiets.Margin = new System.Windows.Forms.Padding(4);
             this.checkHerenFiets.Name = "checkHerenFiets";
             this.checkHerenFiets.Size = new System.Drawing.Size(161, 28);
             this.checkHerenFiets.TabIndex = 5;
@@ -619,7 +642,7 @@
             // checkDamesFiets
             // 
             this.checkDamesFiets.Location = new System.Drawing.Point(73, 140);
-            this.checkDamesFiets.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkDamesFiets.Margin = new System.Windows.Forms.Padding(4);
             this.checkDamesFiets.Name = "checkDamesFiets";
             this.checkDamesFiets.Size = new System.Drawing.Size(161, 28);
             this.checkDamesFiets.TabIndex = 4;
@@ -628,7 +651,7 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(493, 110);
+            this.label4.Location = new System.Drawing.Point(256, 110);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(168, 23);
@@ -638,16 +661,16 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1359, 113);
+            this.label3.Location = new System.Drawing.Point(619, 110);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(126, 19);
+            this.label3.Size = new System.Drawing.Size(157, 23);
             this.label3.TabIndex = 2;
             this.label3.Text = "Windsnelheid (m/s)";
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(971, 113);
+            this.label2.Location = new System.Drawing.Point(443, 110);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(168, 23);
@@ -682,6 +705,7 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartSubgroup1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -739,6 +763,7 @@
         private System.Windows.Forms.CheckBox checkRainfall3And6;
         private System.Windows.Forms.CheckBox checkRainfall0And3;
         private System.Windows.Forms.Button BtnCreateSubgroup1Chart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartSubgroup1;
     }
 }
 
