@@ -20,7 +20,11 @@ namespace Project3Data
         {
             InitializeComponent();
 
-            List<string> names = new List<string>();
+            chartSubgroup1.Series[0]["PieLabelStyle"] = "Outside";
+            //chartSubgroup1.ChartAreas[0].Area3DStyle.Enable3D = true;
+            //chartSubgroup1.ChartAreas[0].Area3DStyle.Inclination = 2;
+
+            //List<string> names = new List<string>();
 
             //using (var mark = new MainDBContext())
             //{
@@ -273,39 +277,9 @@ namespace Project3Data
                 listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "OPOE"));
             }
 
-            if (checkCrossFiets.Checked)
-            {
-                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "CROSS"));
-            }
-
             if (checkSportFiets.Checked)
             {
                 listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "SPORT"));
-            }
-
-            if (checkBakFiets.Checked)
-            {
-                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "BAK"));
-            }
-
-            if (checkTandem.Checked)
-            {
-                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "TANDEM"));
-            }
-
-            if (checkDriewieler.Checked)
-            {
-                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "DRIEWIELER"));
-            }
-
-            if (checkElektrischeFiets.Checked)
-            {
-                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "ELEKTRISCHE"));
-            }
-
-            if (checkVouwFiets.Checked)
-            {
-                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "VOUW"));
             }
 
             return listToReturn;
@@ -555,7 +529,8 @@ namespace Project3Data
 
         private void BtnCreateSubgroup1Chart_Click(object sender, EventArgs e)
         {
-            var bicycleByKeywords = GetBicycleTheftsByKeywordsFromCheckBoxes();
+            List<BicycleTheftModel> bicycleByKeywords = GetBicycleTheftsByKeywordsFromCheckBoxes();
+
             FilterBicycleTheftsByRainFallSumCheckBoxes(ref bicycleByKeywords);
             FilterBicycleTheftsByTemperatureCheckBoxes(ref bicycleByKeywords);
             FilterBicycleTheftsByWindspeedCheckBoxes(ref bicycleByKeywords);
@@ -571,15 +546,14 @@ namespace Project3Data
                 }
             }
 
-            chartSubgroup1.Series["Thefts"].Points.Clear();
+            chartSubgroup1.Series[0].Points.Clear();
 
             foreach (var dicPair in numberOfTheftsPerKeywordDic)
             {
-                chartSubgroup1.Series["Thefts"].Points.AddXY(dicPair.Key.ToString().ToLower(), dicPair.Value);
+                chartSubgroup1.Series[0].Points.AddXY(dicPair.Key.ToString().ToLower(), dicPair.Value);
             }
 
             chartSubgroup1.DataBind();
-            chartSubgroup1.Visible = true;
         }
 
         private void CreateButtonsParkingGarages()
