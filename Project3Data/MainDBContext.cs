@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Project3Data
 {
@@ -184,6 +185,26 @@ namespace Project3Data
             }
             return allTimes;
         }
+
+        public static ParkingGarageModel GetGarageModel(string parkingName, string date, string time)
+        {
+            using (MainDBContext context = new MainDBContext()) {
+                var allParkingGarages = context.ParkingGarageModel;
+
+                foreach (var parkingModel in allParkingGarages) {
+                    if (parkingModel.Name == parkingName) { //  && (parkingModel.Date == selectedDateTime)
+                        var checkDateTime = parkingModel.Date.ToString("h:mm");
+                        
+                        if(time == checkDateTime) {
+                            return parkingModel;
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
     }
 }
     

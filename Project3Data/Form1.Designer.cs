@@ -36,6 +36,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -50,6 +53,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
+            this.BtnCreateSubgroup1Chart = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.chartSubgroup1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
@@ -92,13 +96,14 @@
             this.checkRainfall30And33 = new System.Windows.Forms.CheckBox();
             this.checkRainfall24And27 = new System.Windows.Forms.CheckBox();
             this.checkRainfall27And30 = new System.Windows.Forms.CheckBox();
-            this.BtnCreateSubgroup1Chart = new System.Windows.Forms.Button();
+            this.parkingChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.firefoxSubTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartSubgroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.parkingChart)).BeginInit();
             this.SuspendLayout();
             // 
             // firefoxSubTabControl1
@@ -146,6 +151,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel2.Controls.Add(this.parkingChart);
             this.panel2.Controls.Add(this.comboBox2);
             this.panel2.Controls.Add(this.comboBox1);
             this.panel2.Location = new System.Drawing.Point(386, 63);
@@ -163,6 +169,7 @@
             this.comboBox2.Size = new System.Drawing.Size(147, 31);
             this.comboBox2.TabIndex = 1;
             this.comboBox2.Text = "Select Time";
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.create_parking_chart_SelectedIndexChanged);
             // 
             // comboBox1
             // 
@@ -179,6 +186,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Default;
             this.panel1.Location = new System.Drawing.Point(883, 679);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
@@ -272,9 +280,20 @@
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(1095, 16);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(132, 46);
+            this.label6.Size = new System.Drawing.Size(127, 45);
             this.label6.TabIndex = 51;
             this.label6.Text = "Grafiek";
+            // 
+            // BtnCreateSubgroup1Chart
+            // 
+            this.BtnCreateSubgroup1Chart.Location = new System.Drawing.Point(39, 561);
+            this.BtnCreateSubgroup1Chart.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnCreateSubgroup1Chart.Name = "BtnCreateSubgroup1Chart";
+            this.BtnCreateSubgroup1Chart.Size = new System.Drawing.Size(689, 54);
+            this.BtnCreateSubgroup1Chart.TabIndex = 48;
+            this.BtnCreateSubgroup1Chart.Text = "Maak circlediagram";
+            this.BtnCreateSubgroup1Chart.UseVisualStyleBackColor = true;
+            this.BtnCreateSubgroup1Chart.Click += new System.EventHandler(this.BtnCreateSubgroup1Chart_Click);
             // 
             // label5
             // 
@@ -284,37 +303,38 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(274, 16);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(201, 46);
+            this.label5.Size = new System.Drawing.Size(199, 45);
             this.label5.TabIndex = 51;
             this.label5.Text = "Filter opties";
             // 
             // chartSubgroup1
             // 
             this.chartSubgroup1.BackColor = System.Drawing.Color.SteelBlue;
-            chartArea1.Area3DStyle.Enable3D = true;
-            chartArea1.Area3DStyle.Inclination = 20;
-            chartArea1.Area3DStyle.PointDepth = 10;
-            chartArea1.Area3DStyle.PointGapDepth = 10;
-            chartArea1.Name = "ChartArea1";
-            this.chartSubgroup1.ChartAreas.Add(chartArea1);
-            legend1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            legend1.IsTextAutoFit = false;
-            legend1.Name = "Legend1";
-            legend1.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chartSubgroup1.Legends.Add(legend1);
+            this.chartSubgroup1.BackImageTransparentColor = System.Drawing.Color.Transparent;
+            chartArea2.Area3DStyle.Enable3D = true;
+            chartArea2.Area3DStyle.Inclination = 20;
+            chartArea2.Area3DStyle.PointDepth = 10;
+            chartArea2.Area3DStyle.PointGapDepth = 10;
+            chartArea2.Name = "ChartArea1";
+            this.chartSubgroup1.ChartAreas.Add(chartArea2);
+            legend2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            legend2.IsTextAutoFit = false;
+            legend2.Name = "Legend1";
+            legend2.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chartSubgroup1.Legends.Add(legend2);
             this.chartSubgroup1.Location = new System.Drawing.Point(793, 51);
             this.chartSubgroup1.Name = "chartSubgroup1";
-            series1.ChartArea = "ChartArea1";
-            series1.CustomProperties = "DrawingStyle=Cylinder";
-            series1.EmptyPointStyle.IsValueShownAsLabel = true;
-            series1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series1.IsValueShownAsLabel = true;
-            series1.LabelBackColor = System.Drawing.Color.White;
-            series1.LabelBorderColor = System.Drawing.Color.Black;
-            series1.Legend = "Legend1";
-            series1.Name = "Aantal diefstallen";
-            series1.YValuesPerPoint = 4;
-            this.chartSubgroup1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.CustomProperties = "DrawingStyle=Cylinder";
+            series2.EmptyPointStyle.IsValueShownAsLabel = true;
+            series2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series2.IsValueShownAsLabel = true;
+            series2.LabelBackColor = System.Drawing.Color.White;
+            series2.LabelBorderColor = System.Drawing.Color.Black;
+            series2.Legend = "Legend1";
+            series2.Name = "Aantal diefstallen";
+            series2.YValuesPerPoint = 4;
+            this.chartSubgroup1.Series.Add(series2);
             this.chartSubgroup1.Size = new System.Drawing.Size(764, 564);
             this.chartSubgroup1.TabIndex = 52;
             // 
@@ -799,16 +819,24 @@
             this.checkRainfall27And30.Text = "27 tot 30";
             this.checkRainfall27And30.UseVisualStyleBackColor = false;
             // 
-            // BtnCreateSubgroup1Chart
+            // parkingChart
             // 
-            this.BtnCreateSubgroup1Chart.Location = new System.Drawing.Point(39, 561);
-            this.BtnCreateSubgroup1Chart.Margin = new System.Windows.Forms.Padding(4);
-            this.BtnCreateSubgroup1Chart.Name = "BtnCreateSubgroup1Chart";
-            this.BtnCreateSubgroup1Chart.Size = new System.Drawing.Size(689, 54);
-            this.BtnCreateSubgroup1Chart.TabIndex = 48;
-            this.BtnCreateSubgroup1Chart.Text = "Maak circlediagram";
-            this.BtnCreateSubgroup1Chart.UseVisualStyleBackColor = true;
-            this.BtnCreateSubgroup1Chart.Click += new System.EventHandler(this.BtnCreateSubgroup1Chart_Click);
+            this.parkingChart.BackColor = System.Drawing.Color.Transparent;
+            this.parkingChart.BorderlineColor = System.Drawing.Color.Transparent;
+            chartArea1.Name = "ChartArea1";
+            this.parkingChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.parkingChart.Legends.Add(legend1);
+            this.parkingChart.Location = new System.Drawing.Point(23, 111);
+            this.parkingChart.Name = "parkingChart";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.parkingChart.Series.Add(series1);
+            this.parkingChart.Size = new System.Drawing.Size(524, 443);
+            this.parkingChart.TabIndex = 2;
+            this.parkingChart.Text = "parkingChart";
             // 
             // Form1
             // 
@@ -832,6 +860,7 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartSubgroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.parkingChart)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -892,6 +921,7 @@
         private System.Windows.Forms.CheckBox checkRainfall30And33;
         private System.Windows.Forms.CheckBox checkRainfall24And27;
         private System.Windows.Forms.CheckBox checkRainfall27And30;
+        private System.Windows.Forms.DataVisualization.Charting.Chart parkingChart;
     }
 }
 

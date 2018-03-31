@@ -36,6 +36,10 @@ namespace Project3Data
             //        }
             //    }
             //}
+
+            //panel2.backcolor = color.fromargb(180, color.dodgerblue);
+            //panel3.backcolor = color.fromargb(180, color.dodgerblue);
+            //panel4.backcolor = color.fromargb(180, color.dodgerblue);
         }
 
         #region Other Methods
@@ -231,9 +235,9 @@ namespace Project3Data
 
             using (MainDBContext dbContext = new MainDBContext())
             {
-                //dbContext.BicycleThefts.AddRange(bicycleTheftModels);
-                //dbContext.ParkingGarageModel.AddRange(parkingModels);
-                //dbContext.WeatherModels.AddRange(weatherModels);
+                dbContext.BicycleThefts.AddRange(bicycleTheftModels);
+                dbContext.ParkingGarageModel.AddRange(parkingModels);
+                dbContext.WeatherModels.AddRange(weatherModels);
 
                 await dbContext.SaveChangesAsync();
             }
@@ -615,11 +619,34 @@ namespace Project3Data
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Console.WriteLine(comboBox1.Text);
+            //Console.WriteLine(comboBox1.Text);
             comboBox2.Items.Clear();
             foreach (var item in MainDBContext.GetAlltimesForParkingGarage(selectParkingGaragename,comboBox1.Text))
             {
                 comboBox2.Items.Add(item);
+            }
+        }
+
+        private void create_parking_chart_SelectedIndexChanged(object sender, EventArgs e) {
+            //Console.WriteLine(comboBox2.Text);
+
+            if ((comboBox1.Text != "Select date") && (comboBox2.Text != "Select time")) {
+                var garageRequest = MainDBContext.GetGarageModel(selectParkingGaragename, comboBox1.Text, comboBox2.Text);
+                
+                if (garageRequest != null) {
+                    var ParkingCapacity = garageRequest.ParkingCapacity;
+                    var VacantSpaces = garageRequest.VacantSpaces;
+
+                    parkingChart.Series[0].Points.Clear();
+
+                    parkingChart.Series[0].Points.AddXY("Bezet",ParkingCapacity);
+                    parkingChart.Series[0].Points.AddXY("Leeg", VacantSpaces);
+
+                    parkingChart.DataBind();
+
+                    //Console.WriteLine("ParkingCapacity:" + ParkingCapacity);
+                    //Console.WriteLine("VacantSpaces:" + VacantSpaces);
+                }
             }
         }
     }
