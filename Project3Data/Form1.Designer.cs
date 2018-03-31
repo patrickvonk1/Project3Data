@@ -50,6 +50,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
+            this.BtnCreateSubgroup1Chart = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.chartSubgroup1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
@@ -92,7 +93,7 @@
             this.checkRainfall30And33 = new System.Windows.Forms.CheckBox();
             this.checkRainfall24And27 = new System.Windows.Forms.CheckBox();
             this.checkRainfall27And30 = new System.Windows.Forms.CheckBox();
-            this.BtnCreateSubgroup1Chart = new System.Windows.Forms.Button();
+            this.checkOverigeFietsen = new System.Windows.Forms.CheckBox();
             this.firefoxSubTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -234,6 +235,7 @@
             this.panel4.Controls.Add(this.checkKinderFiets);
             this.panel4.Controls.Add(this.checkWindspeed5And6);
             this.panel4.Controls.Add(this.checkWindspeed4And5);
+            this.panel4.Controls.Add(this.checkOverigeFietsen);
             this.panel4.Controls.Add(this.checkSportFiets);
             this.panel4.Controls.Add(this.checkWindspeed3And4);
             this.panel4.Controls.Add(this.checkWindspeed2And3);
@@ -272,9 +274,20 @@
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(1095, 16);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(132, 46);
+            this.label6.Size = new System.Drawing.Size(127, 45);
             this.label6.TabIndex = 51;
             this.label6.Text = "Grafiek";
+            // 
+            // BtnCreateSubgroup1Chart
+            // 
+            this.BtnCreateSubgroup1Chart.Location = new System.Drawing.Point(39, 561);
+            this.BtnCreateSubgroup1Chart.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnCreateSubgroup1Chart.Name = "BtnCreateSubgroup1Chart";
+            this.BtnCreateSubgroup1Chart.Size = new System.Drawing.Size(689, 54);
+            this.BtnCreateSubgroup1Chart.TabIndex = 48;
+            this.BtnCreateSubgroup1Chart.Text = "Maak circlediagram";
+            this.BtnCreateSubgroup1Chart.UseVisualStyleBackColor = true;
+            this.BtnCreateSubgroup1Chart.Click += new System.EventHandler(this.BtnCreateSubgroup1Chart_Click);
             // 
             // label5
             // 
@@ -284,7 +297,7 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(274, 16);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(201, 46);
+            this.label5.Size = new System.Drawing.Size(199, 45);
             this.label5.TabIndex = 51;
             this.label5.Text = "Filter opties";
             // 
@@ -799,16 +812,17 @@
             this.checkRainfall27And30.Text = "27 tot 30";
             this.checkRainfall27And30.UseVisualStyleBackColor = false;
             // 
-            // BtnCreateSubgroup1Chart
+            // checkOverigeFietsen
             // 
-            this.BtnCreateSubgroup1Chart.Location = new System.Drawing.Point(39, 561);
-            this.BtnCreateSubgroup1Chart.Margin = new System.Windows.Forms.Padding(4);
-            this.BtnCreateSubgroup1Chart.Name = "BtnCreateSubgroup1Chart";
-            this.BtnCreateSubgroup1Chart.Size = new System.Drawing.Size(689, 54);
-            this.BtnCreateSubgroup1Chart.TabIndex = 48;
-            this.BtnCreateSubgroup1Chart.Text = "Maak circlediagram";
-            this.BtnCreateSubgroup1Chart.UseVisualStyleBackColor = true;
-            this.BtnCreateSubgroup1Chart.Click += new System.EventHandler(this.BtnCreateSubgroup1Chart_Click);
+            this.checkOverigeFietsen.BackColor = System.Drawing.Color.SkyBlue;
+            this.checkOverigeFietsen.ForeColor = System.Drawing.Color.Black;
+            this.checkOverigeFietsen.Location = new System.Drawing.Point(39, 301);
+            this.checkOverigeFietsen.Margin = new System.Windows.Forms.Padding(4);
+            this.checkOverigeFietsen.Name = "checkOverigeFietsen";
+            this.checkOverigeFietsen.Size = new System.Drawing.Size(161, 28);
+            this.checkOverigeFietsen.TabIndex = 9;
+            this.checkOverigeFietsen.Text = "Overige Fietsen";
+            this.checkOverigeFietsen.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -892,6 +906,7 @@
         private System.Windows.Forms.CheckBox checkRainfall30And33;
         private System.Windows.Forms.CheckBox checkRainfall24And27;
         private System.Windows.Forms.CheckBox checkRainfall27And30;
+        private System.Windows.Forms.CheckBox checkOverigeFietsen;
     }
 }
 
