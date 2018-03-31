@@ -175,9 +175,9 @@ namespace Project3Data
                     if (parkingGarage.Name == name || name == "All parking garages")
                     {
                         string[] newdate = parkingGarage.Date.ToString().Split(' ');
-                        if (allTimes.Contains(newdate[1]) == false && newdate[0] == date)
+                        string[] fixDate = newdate[1].Split(':');
+                        if (allTimes.Contains(fixDate[0] + ":00") == false && newdate[0] == date)
                         {
-                            string[] fixDate = newdate[1].Split(':');
                             allTimes.Add(fixDate[0] + ":00");
                         }
                     }
@@ -195,7 +195,7 @@ namespace Project3Data
 
                 foreach (var parkingModel in parkingGaragesByDate)
                 {
-                    if (parkingModel.Name == parkingName)
+                    if (parkingModel.Name == parkingName || parkingName == "All parking garages")
                     { //  && (parkingModel.Date == selectedDateTime)
                         var dateToCheck = parkingModel.Date.ToString().Split(' ');
 

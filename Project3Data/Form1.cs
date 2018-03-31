@@ -629,6 +629,8 @@ namespace Project3Data
                 //Console.WriteLine(item); // write all dates
                 comboBox1.Items.Add(item);
             }
+
+            garageSelection.Text = "Selected parking Garage : " + button.Text;
             //Console.WriteLine(button.Text); // write button text (name of the parking garage)
 
             // Make new view!

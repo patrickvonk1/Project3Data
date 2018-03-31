@@ -46,6 +46,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dayAvrTempLabel = new System.Windows.Forms.Label();
             this.parkingChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -98,7 +99,7 @@
             this.checkRainfall30And33 = new System.Windows.Forms.CheckBox();
             this.checkRainfall24And27 = new System.Windows.Forms.CheckBox();
             this.checkRainfall27And30 = new System.Windows.Forms.CheckBox();
-            this.dayAvrTempLabel = new System.Windows.Forms.Label();
+            this.garageSelection = new System.Windows.Forms.Label();
             this.firefoxSubTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -152,6 +153,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel2.Controls.Add(this.garageSelection);
             this.panel2.Controls.Add(this.dayAvrTempLabel);
             this.panel2.Controls.Add(this.parkingChart);
             this.panel2.Controls.Add(this.comboBox2);
@@ -160,6 +162,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(850, 927);
             this.panel2.TabIndex = 2;
+            // 
+            // dayAvrTempLabel
+            // 
+            this.dayAvrTempLabel.AutoSize = true;
+            this.dayAvrTempLabel.ForeColor = System.Drawing.Color.White;
+            this.dayAvrTempLabel.Location = new System.Drawing.Point(56, 154);
+            this.dayAvrTempLabel.Name = "dayAvrTempLabel";
+            this.dayAvrTempLabel.Size = new System.Drawing.Size(0, 37);
+            this.dayAvrTempLabel.TabIndex = 3;
             // 
             // parkingChart
             // 
@@ -184,7 +195,7 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(442, 52);
+            this.comboBox2.Location = new System.Drawing.Point(305, 66);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(218, 45);
             this.comboBox2.TabIndex = 1;
@@ -194,7 +205,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(200, 52);
+            this.comboBox1.Location = new System.Drawing.Point(63, 66);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(218, 45);
             this.comboBox1.TabIndex = 0;
@@ -854,14 +865,15 @@
             this.checkRainfall27And30.Text = "27 tot 30";
             this.checkRainfall27And30.UseVisualStyleBackColor = false;
             // 
-            // dayAvrTempLabel
+            // garageSelection
             // 
-            this.dayAvrTempLabel.AutoSize = true;
-            this.dayAvrTempLabel.ForeColor = System.Drawing.Color.White;
-            this.dayAvrTempLabel.Location = new System.Drawing.Point(56, 154);
-            this.dayAvrTempLabel.Name = "dayAvrTempLabel";
-            this.dayAvrTempLabel.Size = new System.Drawing.Size(0, 37);
-            this.dayAvrTempLabel.TabIndex = 3;
+            this.garageSelection.AutoSize = true;
+            this.garageSelection.ForeColor = System.Drawing.Color.White;
+            this.garageSelection.Location = new System.Drawing.Point(56, 16);
+            this.garageSelection.Name = "garageSelection";
+            this.garageSelection.Size = new System.Drawing.Size(558, 37);
+            this.garageSelection.TabIndex = 4;
+            this.garageSelection.Text = "No parking garage selected. Please select one";
             // 
             // Form1
             // 
@@ -950,6 +962,7 @@
         private System.Windows.Forms.CheckBox checkOverigeFietsen;
         private System.Windows.Forms.DataVisualization.Charting.Chart parkingChart;
         private System.Windows.Forms.Label dayAvrTempLabel;
+        private System.Windows.Forms.Label garageSelection;
     }
 }
 
