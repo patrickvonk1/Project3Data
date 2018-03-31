@@ -190,13 +190,20 @@ namespace Project3Data
         {
             using (MainDBContext context = new MainDBContext()) {
                 var allParkingGarages = context.ParkingGarageModel;
+                var parkingGaragesByDate = allParkingGarages.OrderBy(p => p.Date);
 
-                foreach (var parkingModel in allParkingGarages) {
+                foreach (var parkingModel in parkingGaragesByDate) {
                     if (parkingModel.Name == parkingName) { //  && (parkingModel.Date == selectedDateTime)
-                        var checkDateTime = parkingModel.Date.ToString("h:mm");
-                        
-                        if(time == checkDateTime) {
-                            return parkingModel;
+                        var dateToCheck = parkingModel.Date.ToString().Split(' ');
+
+                        if (dateToCheck[0].ToString() == date)
+                        {
+                            var checkDateTime = dateToCheck[1].Split(':');
+                            string checkTime = (checkDateTime[0] + ":00");
+                            if (time == checkTime)
+                            {
+                                return parkingModel;
+                            }
                         }
                     }
                 }

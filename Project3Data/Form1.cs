@@ -645,12 +645,14 @@ namespace Project3Data
         }
 
         private void create_parking_chart_SelectedIndexChanged(object sender, EventArgs e) {
-            //Console.WriteLine(comboBox2.Text);
+            
 
             if ((comboBox1.Text != "Select date") && (comboBox2.Text != "Select time")) {
+                
                 var garageRequest = MainDBContext.GetGarageModel(selectParkingGaragename, comboBox1.Text, comboBox2.Text);
                 
                 if (garageRequest != null) {
+                    //Console.WriteLine("werkt");
                     var ParkingCapacity = garageRequest.ParkingCapacity;
                     var VacantSpaces = garageRequest.VacantSpaces;
 
