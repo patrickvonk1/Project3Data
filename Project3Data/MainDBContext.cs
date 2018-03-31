@@ -195,7 +195,7 @@ namespace Project3Data
 
                 foreach (var parkingModel in parkingGaragesByDate)
                 {
-                    if (parkingModel.Name == parkingName || parkingName == "All parking garages")
+                    if (parkingModel.Name == parkingName)
                     { //  && (parkingModel.Date == selectedDateTime)
                         var dateToCheck = parkingModel.Date.ToString().Split(' ');
 
@@ -213,6 +213,41 @@ namespace Project3Data
             }
 
             return null;
+        }
+
+        public static List<String> GetGarageModelAll( string date, string time, bool open)
+        {
+            List<string> allReturnGarageModel = new List<string>();
+            using (MainDBContext context = new MainDBContext())
+            {
+                var allParkingGarages = context.ParkingGarageModel;
+                var parkingGaragesByDate = allParkingGarages.OrderBy(p => p.Date);
+
+                foreach (var parkingModel in parkingGaragesByDate)
+                {
+                        var dateToCheck = parkingModel.Date.ToString().Split(' ');
+
+                        if (dateToCheck[0].ToString() == date)
+                        {
+                            var checkDateTime = dateToCheck[1].Split(':');
+                            string checkTime = (checkDateTime[0] + ":00");
+                            if (time == checkTime)
+                            {
+                                if (open)
+                                {
+                                    allReturnGarageModel.Add(parkingModel.ParkingCapacity.ToString());
+                                }
+                                else
+                                {
+                                    allReturnGarageModel.Add(parkingModel.VacantSpaces.ToString());
+                                }
+                            }
+                        }
+                    
+                }
+            }
+
+            return allReturnGarageModel;
         }
 
         public static String GetAvrTempDay(string date)

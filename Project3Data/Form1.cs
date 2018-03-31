@@ -651,25 +651,70 @@ namespace Project3Data
 
             if ((comboBox1.Text != "Select date") && (comboBox2.Text != "Select time")) {
                 
-                var garageRequest = MainDBContext.GetGarageModel(selectParkingGaragename, comboBox1.Text, comboBox2.Text);
-                
-                if (garageRequest != null) {
-                    //Console.WriteLine("werkt");
-                    var ParkingCapacity = garageRequest.ParkingCapacity;
-                    var VacantSpaces = garageRequest.VacantSpaces;
+                if(selectParkingGaragename == "All parking garages")
+                {
+                    var ParkingCapacity = MainDBContext.GetGarageModelAll(comboBox1.Text, comboBox2.Text , true);
+                    var VacantSpaces = MainDBContext.GetGarageModelAll(comboBox1.Text, comboBox2.Text , false);
+
+                    int DevideCapacity = 1;
+                    int countCapacity = 0;
+                    int dump = 0;
+                    foreach (string item in ParkingCapacity)
+                    {
+                        if (int.TryParse(item, out dump))
+                        {
+                            countCapacity = countCapacity + Int32.Parse(item);
+                            DevideCapacity++;
+                        }
+
+                    }
+                    
+                    int DevideVacantSpaces = 1;
+                    int countVacantSpaces = 0;
+                    foreach (string item in VacantSpaces)
+                    {
+                        //Console.WriteLine(item);
+                        if (int.TryParse(item, out dump))
+                        {
+                            countVacantSpaces = DevideVacantSpaces + Int32.Parse(item);
+                            DevideVacantSpaces++;
+                        }
+                    }
 
                     parkingChart.Series[0].Points.Clear();
 
-                    parkingChart.Series[0].Points.AddXY("Bezet",ParkingCapacity);
-                    parkingChart.Series[0].Points.AddXY("Leeg", VacantSpaces);
+                    parkingChart.Series[0].Points.AddXY("Bezet", (countCapacity / DevideCapacity));
+                    parkingChart.Series[0].Points.AddXY("Leeg", (countVacantSpaces / DevideVacantSpaces));
 
                     parkingChart.DataBind();
 
-                    //Console.WriteLine("ParkingCapacity:" + ParkingCapacity);
-                    //Console.WriteLine("VacantSpaces:" + VacantSpaces);
 
-                    dayAvrTempLabel.Text = "The Average Temp this day was : " + MainDBContext.GetAvrTempDay(comboBox1.Text) + "°C";
                 }
+                else
+                {
+                    var garageRequest = MainDBContext.GetGarageModel(selectParkingGaragename, comboBox1.Text, comboBox2.Text);
+
+                    if (garageRequest != null)
+                    {
+                        //Console.WriteLine("werkt");
+                        var ParkingCapacity = garageRequest.ParkingCapacity;
+                        var VacantSpaces = garageRequest.VacantSpaces;
+
+                        parkingChart.Series[0].Points.Clear();
+
+                        parkingChart.Series[0].Points.AddXY("Bezet", ParkingCapacity);
+                        parkingChart.Series[0].Points.AddXY("Leeg", VacantSpaces);
+
+                        parkingChart.DataBind();
+
+                        //Console.WriteLine("ParkingCapacity:" + ParkingCapacity);
+                        //Console.WriteLine("VacantSpaces:" + VacantSpaces);
+
+                       
+                    }
+                }
+                dayAvrTempLabel.Text = "The Average Temp this day was : " + MainDBContext.GetAvrTempDay(comboBox1.Text) + "°C";
+
             }
         }
     }
