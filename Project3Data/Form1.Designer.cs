@@ -98,6 +98,7 @@
             this.checkRainfall30And33 = new System.Windows.Forms.CheckBox();
             this.checkRainfall24And27 = new System.Windows.Forms.CheckBox();
             this.checkRainfall27And30 = new System.Windows.Forms.CheckBox();
+            this.dayAvrTempLabel = new System.Windows.Forms.Label();
             this.firefoxSubTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -151,6 +152,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel2.Controls.Add(this.dayAvrTempLabel);
             this.panel2.Controls.Add(this.parkingChart);
             this.panel2.Controls.Add(this.comboBox2);
             this.panel2.Controls.Add(this.comboBox1);
@@ -852,6 +854,15 @@
             this.checkRainfall27And30.Text = "27 tot 30";
             this.checkRainfall27And30.UseVisualStyleBackColor = false;
             // 
+            // dayAvrTempLabel
+            // 
+            this.dayAvrTempLabel.AutoSize = true;
+            this.dayAvrTempLabel.ForeColor = System.Drawing.Color.White;
+            this.dayAvrTempLabel.Location = new System.Drawing.Point(56, 154);
+            this.dayAvrTempLabel.Name = "dayAvrTempLabel";
+            this.dayAvrTempLabel.Size = new System.Drawing.Size(0, 37);
+            this.dayAvrTempLabel.TabIndex = 3;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -870,6 +881,7 @@
             this.firefoxSubTabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.parkingChart)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -937,6 +949,7 @@
         private System.Windows.Forms.CheckBox checkRainfall27And30;
         private System.Windows.Forms.CheckBox checkOverigeFietsen;
         private System.Windows.Forms.DataVisualization.Charting.Chart parkingChart;
+        private System.Windows.Forms.Label dayAvrTempLabel;
     }
 }
 

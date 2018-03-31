@@ -235,8 +235,8 @@ namespace Project3Data
 
             using (MainDBContext dbContext = new MainDBContext())
             {
-                dbContext.BicycleThefts.AddRange(bicycleTheftModels);
-                dbContext.ParkingGarageModel.AddRange(parkingModels);
+                //dbContext.BicycleThefts.AddRange(bicycleTheftModels);
+                //dbContext.ParkingGarageModel.AddRange(parkingModels);
                 dbContext.WeatherModels.AddRange(weatherModels);
 
                 await dbContext.SaveChangesAsync();
@@ -665,6 +665,8 @@ namespace Project3Data
 
                     //Console.WriteLine("ParkingCapacity:" + ParkingCapacity);
                     //Console.WriteLine("VacantSpaces:" + VacantSpaces);
+
+                    dayAvrTempLabel.Text = "The Average Temp this day was : " + MainDBContext.GetAvrTempDay(comboBox1.Text) + "°C";
                 }
             }
         }

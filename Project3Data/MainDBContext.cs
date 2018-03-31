@@ -53,7 +53,7 @@ namespace Project3Data
 
         public static List<BicycleTheftModel> GetBicycleTheftsByWindSpeed(float minWindspeed, float maxWindspeed)
         {
-            
+
             List<BicycleTheftModel> filteredBicycleThefts = new List<BicycleTheftModel>();
             List<WeatherModel> filteredWeatherModels = new List<WeatherModel>();
 
@@ -133,7 +133,7 @@ namespace Project3Data
             return allParkingGarageNames;
 
         }
-        
+
         public static List<string> GetAllDatesForParkingGarage(string name)
         {
             List<string> allDates = new List<string>();
@@ -142,10 +142,10 @@ namespace Project3Data
             {
                 var allParkingGarages = context.ParkingGarageModel;
                 var parkingGaragesByDate = allParkingGarages.OrderBy(p => p.Date);
-                
+
                 foreach (var parkingGarage in parkingGaragesByDate)
                 {
-                    if (parkingGarage.Name == name || name == "All parking garages")                    
+                    if (parkingGarage.Name == name || name == "All parking garages")
                     {
                         string[] newdate = parkingGarage.Date.ToString().Split(' ');
                         if (allDates.Contains(newdate[0]) == false)
@@ -161,7 +161,7 @@ namespace Project3Data
             return allDates;
         }
 
-        public static List<string> GetAlltimesForParkingGarage(string name,string date)
+        public static List<string> GetAlltimesForParkingGarage(string name, string date)
         {
             List<string> allTimes = new List<string>();
 
@@ -188,12 +188,15 @@ namespace Project3Data
 
         public static ParkingGarageModel GetGarageModel(string parkingName, string date, string time)
         {
-            using (MainDBContext context = new MainDBContext()) {
+            using (MainDBContext context = new MainDBContext())
+            {
                 var allParkingGarages = context.ParkingGarageModel;
                 var parkingGaragesByDate = allParkingGarages.OrderBy(p => p.Date);
 
-                foreach (var parkingModel in parkingGaragesByDate) {
-                    if (parkingModel.Name == parkingName) { //  && (parkingModel.Date == selectedDateTime)
+                foreach (var parkingModel in parkingGaragesByDate)
+                {
+                    if (parkingModel.Name == parkingName)
+                    { //  && (parkingModel.Date == selectedDateTime)
                         var dateToCheck = parkingModel.Date.ToString().Split(' ');
 
                         if (dateToCheck[0].ToString() == date)
@@ -212,6 +215,21 @@ namespace Project3Data
             return null;
         }
 
+        public static String GetAvrTempDay(string date)
+        {
+            using (MainDBContext context = new MainDBContext())
+            {
+                foreach (var weatherModel in context.WeatherModels)
+                {
+                    var selectDate = weatherModel.Date.ToString().Split(' ');
+                    if (selectDate[0] == date)
+                    {
+                        return weatherModel.DayAverageTemperature.ToString();
+                    }
+                }
+                
+            }
+            return null;
+        }
     }
 }
-    
