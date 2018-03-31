@@ -96,6 +96,7 @@
             this.checkRainfall30And33 = new System.Windows.Forms.CheckBox();
             this.checkRainfall24And27 = new System.Windows.Forms.CheckBox();
             this.checkRainfall27And30 = new System.Windows.Forms.CheckBox();
+            this.checkOverigeFietsen = new System.Windows.Forms.CheckBox();
             this.parkingChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.firefoxSubTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -242,6 +243,7 @@
             this.panel4.Controls.Add(this.checkKinderFiets);
             this.panel4.Controls.Add(this.checkWindspeed5And6);
             this.panel4.Controls.Add(this.checkWindspeed4And5);
+            this.panel4.Controls.Add(this.checkOverigeFietsen);
             this.panel4.Controls.Add(this.checkSportFiets);
             this.panel4.Controls.Add(this.checkWindspeed3And4);
             this.panel4.Controls.Add(this.checkWindspeed2And3);
@@ -819,8 +821,18 @@
             this.checkRainfall27And30.Text = "27 tot 30";
             this.checkRainfall27And30.UseVisualStyleBackColor = false;
             // 
+            // checkOverigeFietsen
             // parkingChart
             // 
+            this.checkOverigeFietsen.BackColor = System.Drawing.Color.SkyBlue;
+            this.checkOverigeFietsen.ForeColor = System.Drawing.Color.Black;
+            this.checkOverigeFietsen.Location = new System.Drawing.Point(39, 301);
+            this.checkOverigeFietsen.Margin = new System.Windows.Forms.Padding(4);
+            this.checkOverigeFietsen.Name = "checkOverigeFietsen";
+            this.checkOverigeFietsen.Size = new System.Drawing.Size(161, 28);
+            this.checkOverigeFietsen.TabIndex = 9;
+            this.checkOverigeFietsen.Text = "Overige Fietsen";
+            this.checkOverigeFietsen.UseVisualStyleBackColor = false;
             this.parkingChart.BackColor = System.Drawing.Color.Transparent;
             this.parkingChart.BorderlineColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "ChartArea1";
@@ -921,6 +933,7 @@
         private System.Windows.Forms.CheckBox checkRainfall30And33;
         private System.Windows.Forms.CheckBox checkRainfall24And27;
         private System.Windows.Forms.CheckBox checkRainfall27And30;
+        private System.Windows.Forms.CheckBox checkOverigeFietsen;
         private System.Windows.Forms.DataVisualization.Charting.Chart parkingChart;
     }
 }

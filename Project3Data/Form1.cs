@@ -256,6 +256,12 @@ namespace Project3Data
             List<BicycleTheftModel> allBicycleThefts = new List<BicycleTheftModel>();
             List<BicycleTheftModel> listToReturn = new List<BicycleTheftModel>();
 
+            if (!(checkDamesFiets.Checked || checkHerenFiets.Checked || checkKinderFiets.Checked || checkOpoeFiets.Checked || checkSportFiets.Checked || checkOverigeFietsen.Checked))
+            {
+                System.Windows.Forms.MessageBox.Show("Selecteer een fietsmerk.");
+                return new List<BicycleTheftModel>();
+            }
+
             using (MainDBContext context = new MainDBContext())
             {
                 allBicycleThefts.AddRange(context.BicycleThefts);
@@ -284,6 +290,11 @@ namespace Project3Data
             if (checkSportFiets.Checked)
             {
                 listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword == "SPORT"));
+            }
+
+            if (checkOverigeFietsen.Checked)
+            {
+                listToReturn.AddRange(allBicycleThefts.Where(b => b.Keyword != "DAMES" && b.Keyword != "HEREN" && b.Keyword != "KINDER" && b.Keyword != "OPOE" && b.Keyword != "SPORT"));
             }
 
             return listToReturn;
@@ -543,11 +554,17 @@ namespace Project3Data
 
             foreach (var theft in bicycleByKeywords)
             {
-                if (!numberOfTheftsPerKeywordDic.ContainsKey(theft.Keyword))//Keyword doesn't exist yet in the dictionary, get the count of the total thefts by this keyword
+                if (!numberOfTheftsPerKeywordDic.ContainsKey(theft.Keyword) && (theft.Keyword == "DAMES" || theft.Keyword == "HEREN" || theft.Keyword == "KINDER" || theft.Keyword == "OPOE" || theft.Keyword == "SPORT"))//Keyword doesn't exist yet in the dictionary, get the count of the total thefts by this keyword
                 {
                     //Example result could be ["DAMES", 8000] meaning, there are 8000 DAMES bicycleThefts
                     numberOfTheftsPerKeywordDic.Add(theft.Keyword, bicycleByKeywords.Count(w => w.Keyword == theft.Keyword));
                 }
+            }
+
+            if (checkOverigeFietsen.Checked)
+            {
+                int totalMiscThefts = bicycleByKeywords.Count(w => w.Keyword != "DAMES" && w.Keyword != "HEREN" && w.Keyword != "KINDER" && w.Keyword != "OPOE" && w.Keyword != "SPORT");
+                numberOfTheftsPerKeywordDic.Add("Overige", totalMiscThefts);
             }
 
             chartSubgroup1.Series[0].Points.Clear();
