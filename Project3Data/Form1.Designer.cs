@@ -36,18 +36,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.firefoxSubTabControl1 = new FirefoxSubTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.Panel2Label = new System.Windows.Forms.Label();
+            this.parkingChart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
             this.garageSelection = new System.Windows.Forms.Label();
             this.dayAvrTempLabel = new System.Windows.Forms.Label();
@@ -103,17 +105,15 @@
             this.checkRainfall30And33 = new System.Windows.Forms.CheckBox();
             this.checkRainfall24And27 = new System.Windows.Forms.CheckBox();
             this.checkRainfall27And30 = new System.Windows.Forms.CheckBox();
-            this.parkingChart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.Panel2Label = new System.Windows.Forms.Label();
             this.firefoxSubTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.parkingChart2)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.parkingChart)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartSubgroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.parkingChart2)).BeginInit();
             this.SuspendLayout();
             // 
             // firefoxSubTabControl1
@@ -158,6 +158,34 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(850, 927);
             this.panel3.TabIndex = 3;
+            // 
+            // Panel2Label
+            // 
+            this.Panel2Label.AutoSize = true;
+            this.Panel2Label.ForeColor = System.Drawing.Color.White;
+            this.Panel2Label.Location = new System.Drawing.Point(59, 131);
+            this.Panel2Label.Name = "Panel2Label";
+            this.Panel2Label.Size = new System.Drawing.Size(0, 37);
+            this.Panel2Label.TabIndex = 6;
+            // 
+            // parkingChart2
+            // 
+            this.parkingChart2.BackColor = System.Drawing.Color.Transparent;
+            this.parkingChart2.BorderlineColor = System.Drawing.Color.Transparent;
+            chartArea1.Name = "ChartArea1";
+            this.parkingChart2.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.parkingChart2.Legends.Add(legend1);
+            this.parkingChart2.Location = new System.Drawing.Point(41, 173);
+            this.parkingChart2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.parkingChart2.Name = "parkingChart2";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.parkingChart2.Series.Add(series1);
+            this.parkingChart2.Size = new System.Drawing.Size(786, 692);
+            this.parkingChart2.TabIndex = 5;
             // 
             // panel2
             // 
@@ -204,6 +232,7 @@
             this.parkingChart.Name = "parkingChart";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.IsValueShownAsLabel = true;
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.parkingChart.Series.Add(series2);
@@ -342,7 +371,7 @@
             this.BtnCreateSubgroup1Chart.Name = "BtnCreateSubgroup1Chart";
             this.BtnCreateSubgroup1Chart.Size = new System.Drawing.Size(1034, 84);
             this.BtnCreateSubgroup1Chart.TabIndex = 48;
-            this.BtnCreateSubgroup1Chart.Text = "Maak circlediagram";
+            this.BtnCreateSubgroup1Chart.Text = "Maak Grafiek";
             this.BtnCreateSubgroup1Chart.UseVisualStyleBackColor = true;
             this.BtnCreateSubgroup1Chart.Click += new System.EventHandler(this.BtnCreateSubgroup1Chart_Click);
             // 
@@ -884,34 +913,6 @@
             this.checkRainfall27And30.Text = "27 tot 30";
             this.checkRainfall27And30.UseVisualStyleBackColor = false;
             // 
-            // parkingChart2
-            // 
-            this.parkingChart2.BackColor = System.Drawing.Color.Transparent;
-            this.parkingChart2.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea1.Name = "ChartArea1";
-            this.parkingChart2.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.parkingChart2.Legends.Add(legend1);
-            this.parkingChart2.Location = new System.Drawing.Point(41, 173);
-            this.parkingChart2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.parkingChart2.Name = "parkingChart2";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.parkingChart2.Series.Add(series1);
-            this.parkingChart2.Size = new System.Drawing.Size(786, 692);
-            this.parkingChart2.TabIndex = 5;
-            // 
-            // Panel2Label
-            // 
-            this.Panel2Label.AutoSize = true;
-            this.Panel2Label.ForeColor = System.Drawing.Color.White;
-            this.Panel2Label.Location = new System.Drawing.Point(59, 131);
-            this.Panel2Label.Name = "Panel2Label";
-            this.Panel2Label.Size = new System.Drawing.Size(0, 37);
-            this.Panel2Label.TabIndex = 6;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -931,6 +932,7 @@
             this.tabPage1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.parkingChart2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.parkingChart)).EndInit();
@@ -938,7 +940,6 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartSubgroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.parkingChart2)).EndInit();
             this.ResumeLayout(false);
 
         }

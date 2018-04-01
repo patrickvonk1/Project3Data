@@ -714,12 +714,10 @@ namespace Project3Data
                     }
                 }
                 string avrTemp = MainDBContext.GetAvrTempDay(comboBox1.Text);
-                dayAvrTempLabel.Text = "The Average Temp this day was : " + avrTemp.ToString() + "°C";
+                dayAvrTempLabel.Text = "The Average Tempereture this day was : " + avrTemp.ToString() + "°C";
 
 
 
-
-                Console.WriteLine(avrTemp.ToString());
                 var ParkingCapacityAll = MainDBContext.GetGarageModelByTemp(selectParkingGaragename, avrTemp,comboBox2.Text, true);
                 var VacantSpacesAll = MainDBContext.GetGarageModelByTemp(selectParkingGaragename, avrTemp, comboBox2.Text, false);
 

@@ -295,10 +295,10 @@ namespace Project3Data
 
                 }
 
-                
+                var allParkinggarageModels = context.ParkingGarageModel;
                 foreach (var itemDate in AllDates)
                 {
-                    foreach (var itemGarage in context.ParkingGarageModel)
+                    foreach (var itemGarage in allParkinggarageModels)
                     {
                         var date = itemGarage.Date.ToString().Split(' ');
                         if (itemDate == date[0])
