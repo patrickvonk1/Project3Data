@@ -266,5 +266,70 @@ namespace Project3Data
             }
             return null;
         }
+
+        public static List<int> GetGarageModelByTemp(string parkingName, string tempString,string time, bool open)
+        {
+
+            tempString = tempString.Replace(',','.');
+            float temp = float.Parse(tempString, System.Globalization.CultureInfo.InvariantCulture);
+            float maxTemp = temp + 0.5f;
+            float minTemp = temp - 0.5f;
+
+
+            List<String> AllDates = new List<String>();
+            List<int> allReturnGarageModel = new List<int>();
+            using (MainDBContext context = new MainDBContext())
+            {
+                var AllWheterModel = context.WeatherModels;
+
+                foreach (var info in AllWheterModel)
+                {
+                    string WirdTempFloat = info.DayAverageTemperature.ToString().Replace(',','.');
+                    float tempNormal = float.Parse(WirdTempFloat, System.Globalization.CultureInfo.InvariantCulture);
+                    if (tempNormal < maxTemp && tempNormal > minTemp)
+                    {
+                        var date = info.Date.ToString().Split(' ');
+                        AllDates.Add(date[0]);
+                    }
+ 
+
+                }
+
+                
+                foreach (var itemDate in AllDates)
+                {
+                    foreach (var itemGarage in context.ParkingGarageModel)
+                    {
+                        var date = itemGarage.Date.ToString().Split(' ');
+                        if (itemDate == date[0])
+                        {
+                            var checkDateTime = date[1].Split(':');
+                            string checkTime = (checkDateTime[0] + ":00");
+                            if (time == checkTime)
+                            {
+                                if (parkingName == itemGarage.Name || parkingName == "All parking garages")
+                                {
+                                    if (open)
+                                    {
+                                        allReturnGarageModel.Add(itemGarage.ParkingCapacity);
+                                    
+                                    }
+                                    else
+                                    {
+                                        allReturnGarageModel.Add(itemGarage.VacantSpaces);
+                                    }
+                                }
+                            }
+
+                        }
+
+                    }
+                }
+            }
+
+            return allReturnGarageModel;
+        }
+
+
     }
 }

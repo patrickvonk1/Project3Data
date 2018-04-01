@@ -713,8 +713,43 @@ namespace Project3Data
                        
                     }
                 }
-                dayAvrTempLabel.Text = "The Average Temp this day was : " + MainDBContext.GetAvrTempDay(comboBox1.Text) + "°C";
+                string avrTemp = MainDBContext.GetAvrTempDay(comboBox1.Text);
+                dayAvrTempLabel.Text = "The Average Temp this day was : " + avrTemp.ToString() + "°C";
 
+
+
+
+                Console.WriteLine(avrTemp.ToString());
+                var ParkingCapacityAll = MainDBContext.GetGarageModelByTemp(selectParkingGaragename, avrTemp,comboBox2.Text, true);
+                var VacantSpacesAll = MainDBContext.GetGarageModelByTemp(selectParkingGaragename, avrTemp, comboBox2.Text, false);
+
+                int DevideCapacityAll = 1;
+                float countCapacityAll = 0;
+                foreach (float item in ParkingCapacityAll)
+                {
+
+                    countCapacityAll = countCapacityAll + item;
+                    DevideCapacityAll++;
+                }
+
+                int DevideVacantSpacesAll = 1;
+                float countVacantSpacesAll = 0;
+                foreach (float item in VacantSpacesAll)
+                {
+                    //Console.WriteLine(item);
+
+                    countVacantSpacesAll = DevideVacantSpacesAll + item;
+                    DevideVacantSpacesAll++;
+                }
+
+                parkingChart2.Series[0].Points.Clear();
+
+                parkingChart2.Series[0].Points.AddXY("Bezet", (countCapacityAll / DevideCapacityAll));
+                parkingChart2.Series[0].Points.AddXY("Leeg", (countVacantSpacesAll / DevideVacantSpacesAll));
+
+                parkingChart2.DataBind();
+
+                Panel2Label.Text = "This is the Average for this temperature and time ";
             }
         }
     }
